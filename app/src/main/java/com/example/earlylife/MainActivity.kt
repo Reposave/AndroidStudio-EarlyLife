@@ -1,5 +1,6 @@
 package com.example.earlylife
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,5 +28,10 @@ class MainActivity : AppCompatActivity() {
         //Adding the chart to the UI
         val anyChartView:AnyChartView = findViewById(R.id.any_chart_view)
         anyChartView.setChart(pie)
+    }
+
+    fun startActivityReport(view: View){
+        val intent = Intent(this,ActivityReport::class.java)
+        startActivity(intent)
     }
 }

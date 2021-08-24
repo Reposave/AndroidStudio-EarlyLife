@@ -4,26 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".ActivityReport">
     <TextView
-        android:id="@+id/overview_label"
+        android:id="@+id/activity_name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="Overview"
+        android:text="Shapes"
         android:textSize="30dp"
         android:gravity="center"
-        />
+        >
+
+    </TextView>
     <RelativeLayout
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="271dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overview_label"
+        app:layout_constraintTop_toBottomOf="@id/activity_name"
         >
 
         <com.anychart.AnyChartView
             android:id="@+id/any_chart_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.anychart.AnyChartView>
+
+        <TextView
+            android:id="@+id/activity_details"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="342dp"
+            android:layout_marginEnd="69dp"
+            android:layout_toEndOf="@+id/any_chart_view"
+            android:text="Some details" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="271dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.234"
+        >
+        <com.anychart.AnyChartView
+            android:id="@+id/any_chart_line_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,38 +66,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
         </com.anychart.AnyChartView>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="223dp"
-            android:text="Numbers"></androidx.appcompat.widget.AppCompatButton>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="28dp"
-            android:onClick="startActivityReport"
-            android:text="Shapes"></androidx.appcompat.widget.AppCompatButton>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="121dp"
-            android:text="Love"></androidx.appcompat.widget.AppCompatButton>
     </RelativeLayout>
 
 
