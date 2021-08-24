@@ -27,9 +27,7 @@ class ActivityReport : AppCompatActivity() {
         data.add(ValueDataEntry("Correct", 80))
         data.add(ValueDataEntry("Incorrect", 20))
         successMeter.data(data)
-
-        successMeter.label("Success Rate")
-        successMeter.labels().position("center-top")
+        
 
         //making the view half the size of the parent
         val display = windowManager.defaultDisplay
@@ -44,7 +42,7 @@ class ActivityReport : AppCompatActivity() {
 
         //adding the report details width to the UI
         val activityDetails = findViewById<View>(R.id.activity_details)
-        activityDetails.layoutParams.width = s_width/2
+        //activityDetails.layoutParams.width = s_width/2
 
         val anyChartLineView: AnyChartView = findViewById(R.id.any_chart_line_view)
         APIlib.getInstance().setActiveAnyChartView(anyChartLineView)
