@@ -41,7 +41,7 @@ abstract class UserDatabase: RoomDatabase() {
             instance ?: getDatabase(context).also { instance = it}
         }
 
-        private fun getDatabase(context: Context) = Room.databaseBuilder(context,
+        fun getDatabase(context: Context) = Room.databaseBuilder(context,
             UserDatabase::class.java, "todo-list.db")
             .build()
     }
