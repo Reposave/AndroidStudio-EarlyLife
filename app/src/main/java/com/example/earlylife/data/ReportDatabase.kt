@@ -5,19 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [User::class], version = 1, exportSchema = false) // set to true if we want to export the schema to a folder
-abstract class UserDatabase: RoomDatabase() {
+@Database(entities = [Report::class], version = 1, exportSchema = false) // set to true if we want to export the schema to a folder
+abstract class ReportDatabase: RoomDatabase() {
 
-    abstract fun userDao(): UserDao
+    abstract fun reportDao(): ReportDao
 
     // everything will be visible to other classes
    /** companion object {
         @Volatile
-        private var INSTANCE: UserDatabase? = null
+        private var INSTANCE: ReportDatabase? = null
         private val LOCK = Any()
 
         // Checks if instance of database exists and returns it. Otherwise, creates a new instance and returns that
-        fun getDatabase(context: Context): UserDatabase {
+        fun getDatabase(context: Context): ReportDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -32,8 +32,9 @@ abstract class UserDatabase: RoomDatabase() {
             return instance
         }
     }*/
+
     companion object {
-        @Volatile private var instance: UserDatabase? = null
+        @Volatile private var instance: ReportDatabase? = null
         private val LOCK = Any()
 
 
@@ -42,7 +43,7 @@ abstract class UserDatabase: RoomDatabase() {
         }
 
         fun getDatabase(context: Context) = Room.databaseBuilder(context,
-            UserDatabase::class.java, "todo-list.db")
+            ReportDatabase::class.java, "todo-list.db")
             .build()
     }
 }

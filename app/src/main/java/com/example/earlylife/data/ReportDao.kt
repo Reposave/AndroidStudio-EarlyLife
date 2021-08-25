@@ -7,12 +7,12 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface UserDao {
+interface ReportDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE) //if 2 users are the same, just ignore
-    suspend fun addUser(user: User)
+    suspend fun addReport(report: Report)
 
-    @Query(value = "SELECT * FROM user_table ORDER BY id ASC")
-    fun readAllData(): LiveData<List<User>>
+    @Query(value = "SELECT * FROM report_table ORDER BY id ASC")
+    fun readAllData(): LiveData<List<Report>>
 
 }

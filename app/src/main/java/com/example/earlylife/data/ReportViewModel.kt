@@ -12,21 +12,21 @@ import kotlinx.coroutines.launch
  * Provides data to the UI and survives configuration changes
  * Acts as communication center between repository and UI
  */
-class UserViewModel(application: Application): AndroidViewModel(application) {
-    private val readAllData: LiveData<List<User>>
-    private val repository: UserRepository
+class ReportViewModel(application: Application): AndroidViewModel(application) {
+    private val readAllData: LiveData<List<Report>>
+    private val repository: ReportRepository
 
-    // first executed when UserViewModel is called
+    // first executed when ReportViewModel is called
     init{
-        val userDao = UserDatabase.getDatabase(application).userDao()
-        repository = UserRepository(userDao)
+        val reportDao = ReportDatabase.getDatabase(application).reportDao()
+        repository = ReportRepository(reportDao)
         readAllData = repository.readAllData
     }
 
-    fun addUser(user: User){
+    fun addReport(report: Report){
         // run this in a background thread
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addUser(user)
+            repository.addReport(report)
         }
     }
 }
