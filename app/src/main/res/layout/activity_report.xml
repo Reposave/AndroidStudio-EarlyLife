@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ActivityReport">
 
     <RelativeLayout
         android:id="@+id/view"
@@ -16,7 +16,7 @@
 
         <com.anychart.AnyChartView
             android:id="@+id/any_chart_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -24,16 +24,39 @@
             app:layout_constraintTop_toTopOf="parent">
 
         </com.anychart.AnyChartView>
+
+        <TextView
+            android:id="@+id/activity_details_label"
+            android:layout_width="170dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:text="Details"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/activity_details"
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/activity_details_label"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="40dp"
+            android:text="This activity has been using an average of 10 times a day over
+the course of the week."
+            android:textSize="20dp" />
+
     </RelativeLayout>
 
     <TextView
         android:id="@+id/activity_name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center"
-        android:text="Select Activity Report"
+        android:text="Weekly usage"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
@@ -41,37 +64,28 @@
     </TextView>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="271dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view">
+        app:layout_constraintTop_toBottomOf="@+id/activity_name"
+        app:layout_constraintVertical_bias="0.234">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.anychart.AnyChartView
+            android:id="@+id/any_chart_line_view"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="179dp"
-            android:text="Numbers"
-            ></androidx.appcompat.widget.AppCompatButton>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
-            android:onClick="startActivityReport"
-            android:text="Shapes"></androidx.appcompat.widget.AppCompatButton>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="89dp"
-            android:text="Love"></androidx.appcompat.widget.AppCompatButton>
+        </com.anychart.AnyChartView>
     </RelativeLayout>
 
 
