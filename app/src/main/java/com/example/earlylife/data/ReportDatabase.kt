@@ -37,13 +37,11 @@ abstract class ReportDatabase: RoomDatabase() {
         @Volatile private var instance: ReportDatabase? = null
         private val LOCK = Any()
 
-
         operator fun invoke(context: Context)= instance ?: synchronized(LOCK){
             instance ?: getDatabase(context).also { instance = it}
         }
 
-        fun getDatabase(context: Context) = Room.databaseBuilder(context,
-            ReportDatabase::class.java, "todo-list.db")
+        fun getDatabase(context: Context) = Room.databaseBuilder(context, ReportDatabase::class.java, "todo-list.db")
             .build()
     }
 }

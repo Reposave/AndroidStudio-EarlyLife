@@ -14,8 +14,7 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var mDBManager: DBManager
+    val mDBManager = DBManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
