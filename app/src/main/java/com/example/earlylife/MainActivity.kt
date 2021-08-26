@@ -21,21 +21,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val mDBManager = DBManager(this.application)
+        //val mDBManager = DBManager(this.application)
         //Creating a dummy pie chart to test
         val pie = AnyChart.pie()
         //Array with the data
         val data = ArrayList<DataEntry>()
 
+        /*
         //duplicates might be ignored.
         mDBManager.insertToDbase(1,"Love",10,100)
         mDBManager.insertToDbase(2,"Numbers",300, 400)
         mDBManager.insertToDbase(3,"Shapes",20,40)
 
-        data.add(ValueDataEntry(mDBManager.getName(1),mDBManager.getDailyUsage(1)))
-        data.add(ValueDataEntry(mDBManager.getName(2),mDBManager.getDailyUsage(2)))
-        data.add(ValueDataEntry(mDBManager.getName(3),mDBManager.getDailyUsage(3)))
-        Log.d("Debug",mDBManager.getName(1))
+         */
+
+        data.add(ValueDataEntry("Love",100))
+        data.add(ValueDataEntry("Numbers",300))
+        data.add(ValueDataEntry("Shapes",50))
 
         pie.data(data)
         //Adding the chart to the UI

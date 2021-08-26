@@ -40,8 +40,8 @@ class DBManager(application: Application): AndroidViewModel(application) {
 
     //Returns a report object.
     private fun findReport(id:Int): Report {
-        val reportIterator = mReportRepository.readAllData.value?.iterator()
-
+        val reportIterator = mReportRepository.readAllData.iterator()
+        Log.d("Debug-Live",mReportRepository.readAllData.toString())
         if (reportIterator != null) {
             while (reportIterator.hasNext()) {
                 val rpt = reportIterator.next()

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
  * Acts as communication center between repository and UI
  */
 class ReportViewModel(application: Application): AndroidViewModel(application) {
-    val readAllData: LiveData<List<Report>>
+    val readAllData: List<Report>
     private val repository: ReportRepository
 
     // first executed when ReportViewModel is called

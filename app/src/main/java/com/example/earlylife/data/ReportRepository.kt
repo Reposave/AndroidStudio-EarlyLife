@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 // abstracts access to multiple data sources
 class ReportRepository(private val reportDao: ReportDao) {
 
-    val readAllData: LiveData<List<Report>> = reportDao.readAllData()
+    val readAllData: List<Report> = reportDao.readAllData()
 
     suspend fun addReport(report: Report){
         Log.d("Debug-reportRepo", report.toString())

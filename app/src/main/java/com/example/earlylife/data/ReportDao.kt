@@ -13,6 +13,6 @@ interface ReportDao {
     suspend fun addReport(report: Report)
 
     @Query(value = "SELECT * FROM report_table ORDER BY id ASC")
-    fun readAllData(): LiveData<List<Report>>
+    fun readAllData(): List<Report>
 
 }
