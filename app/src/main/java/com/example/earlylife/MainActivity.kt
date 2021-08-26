@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import com.anychart.AnyChart
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         data.add(ValueDataEntry(mDBManager.getName(1),mDBManager.getDailyUsage(1)))
         data.add(ValueDataEntry(mDBManager.getName(2),mDBManager.getDailyUsage(2)))
         data.add(ValueDataEntry(mDBManager.getName(3),mDBManager.getDailyUsage(3)))
+        Log.d("Debug",mDBManager.getName(1))
 
         pie.data(data)
         //Adding the chart to the UI

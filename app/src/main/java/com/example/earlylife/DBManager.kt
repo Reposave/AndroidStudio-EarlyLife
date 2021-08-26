@@ -3,6 +3,7 @@ package com.example.earlylife
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ class DBManager(application: Application): AndroidViewModel(application) {
     public fun insertToDbase(id: Int, activityName: String, dailyUsage:Int, weeklyUsage:Int) = runBlocking {
         launch {
             val reportEntry = Report(id, activityName, dailyUsage, weeklyUsage)
+            Log.d("Debug-Report",reportEntry.toString())
             //Add Data to Database
             mReportRepository.addReport(reportEntry)
         }
