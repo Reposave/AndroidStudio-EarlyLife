@@ -9,10 +9,13 @@ import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.example.earlylife.DBManager
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var mDBManager: DBManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +24,16 @@ class MainActivity : AppCompatActivity() {
         val pie = AnyChart.pie()
         //Array with the data
         val data = ArrayList<DataEntry>()
-        data.add(ValueDataEntry("Love",100))
-        data.add(ValueDataEntry("Numbers",200))
-        data.add(ValueDataEntry("Shapes",300))
+
+        //duplicates might be ignored.
+        mDBManager.insertToDbase(1,"Love",10,100)
+        mDBManager.insertToDbase(2,"Numbers",300, 400)
+        mDBManager.insertToDbase(3,"Shapes",20,40)
+
+        data.add(ValueDataEntry(mDBManager.getName(1),mDBManager.getDailyUsage(1)))
+        data.add(ValueDataEntry(mDBManager.getName(2),mDBManager.getDailyUsage(2)))
+        data.add(ValueDataEntry(mDBManager.getName(3),mDBManager.getDailyUsage(3)))
+
         pie.data(data)
         //Adding the chart to the UI
         val anyChartView:AnyChartView = findViewById(R.id.any_chart_view)
