@@ -1,5 +1,7 @@
 package com.example.earlylife
 
+import android.app.Application
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,11 +16,11 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    val mDBManager = DBManager(getApplication())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val mDBManager = DBManager(this.application)
         //Creating a dummy pie chart to test
         val pie = AnyChart.pie()
         //Array with the data
