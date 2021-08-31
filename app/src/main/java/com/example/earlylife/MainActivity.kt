@@ -8,11 +8,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.example.earlylife.DBManager
+import com.google.android.material.navigation.NavigationView
 import java.util.*
 
 
@@ -27,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         //Array with the data
         val data = ArrayList<DataEntry>()
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        findViewById<NavigationView>(R.id.nav_view)
+            .setupWithNavController(navController)
         /*
         //duplicates might be ignored.
         mDBManager.insertToDbase(1,"Love",10,100)
