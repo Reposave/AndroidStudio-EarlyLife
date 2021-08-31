@@ -63,11 +63,12 @@
         app:layout_constraintTop_toBottomOf="@id/view">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bar_fragment_button"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="179dp"
-            android:text="Numbers"
+            android:text="Bar"
             ></androidx.appcompat.widget.AppCompatButton>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -79,11 +80,12 @@
             android:text="Shapes"></androidx.appcompat.widget.AppCompatButton>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/line_fragment_button"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="89dp"
-            android:text="Love"></androidx.appcompat.widget.AppCompatButton>
+            android:text="Line"></androidx.appcompat.widget.AppCompatButton>
     </RelativeLayout>
 
     <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
