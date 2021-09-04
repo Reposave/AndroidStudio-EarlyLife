@@ -149,4 +149,7 @@ dependencies {
     implementation "androidx.fragment:fragment:$fragment_version"
     // Kotlin
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    //cardview
+    implementation "androidx.cardview:cardview:1.0.0"
 }

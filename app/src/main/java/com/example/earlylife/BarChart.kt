@@ -14,7 +14,7 @@ import io.data2viz.viz.VizContainerView
 class BarChart (context: Context) : VizContainerView(context){
     private val chart: Chart<PopCount> = chart(canPop) {
         size = Size(vizSize, vizSize)
-        title = "Usage of quilt activities"
+        //title = "Usage of quilt activities"
 
         // Create a discrete dimension for the year of the census
         val activity = discrete({ domain.activity })
@@ -37,7 +37,7 @@ class BarChart (context: Context) : VizContainerView(context){
 class LineChart (context: Context) : VizContainerView(context){
     private val chart: Chart<PopCount> = chart(canPop) {
         size = Size(vizSize, vizSize)
-        title = "Usage of quilt activities"
+        //title = "Usage of quilt activities"
 
         // Create a discrete dimension for the year of the census
         val activity = discrete({ domain.activity })
