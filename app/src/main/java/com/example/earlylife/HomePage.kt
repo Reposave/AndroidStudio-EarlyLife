@@ -12,6 +12,7 @@ class HomePage : AppCompatActivity() {
         setContentView(R.layout.activity_home_page)
         var btnViewReport = findViewById<View>(R.id.btn_reports)
         var btnEcdResources = findViewById<View>(R.id.btn_ecd_resources)
+        var btnConnectToQuilt = findViewById<View>(R.id.btn_connect_to_quilt)
 
         btnViewReport.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
@@ -20,6 +21,11 @@ class HomePage : AppCompatActivity() {
 
         btnEcdResources.setOnClickListener {
             val intent = Intent(this,Ecd_Resources::class.java)
+            startActivity(intent)
+        }
+
+        btnConnectToQuilt.setOnClickListener {
+            val intent = Intent(this,ConnectToQuilt::class.java)
             startActivity(intent)
         }
     }
