@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F5F5F5"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -32,8 +32,11 @@
 
             <TextView
                 android:id="@+id/card_title"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="1dp"
                 android:text="Overall Quilt Usage"
                 android:textSize="30dp"
                 android:textStyle="bold"></TextView>
