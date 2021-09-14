@@ -50,7 +50,7 @@
                     android:layout_marginTop="1dp"
                     android:text="Overall Quilt Usage"
                     android:textSize="30dp"
-                    android:textStyle="bold"></TextView>
+                    android:textColor="#000000"></TextView>
 
                 <RelativeLayout
                     android:id="@+id/top_date_range"
@@ -97,7 +97,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="19dp"
                     android:layout_marginBottom="15dp"
-                    android:text="Line"
+                    android:text="All"
                     app:layout_constraintVertical_bias="0.302" />
 
                 <com.google.android.material.chip.Chip
@@ -105,11 +105,37 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
-                    android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="99dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginBottom="15dp"
-                    android:text="Bar"
+                    android:layout_toEndOf="@+id/line_fragment_button"
+                    android:text="Shapes"
+                    tools:layout_editor_absoluteX="229dp"
+                    tools:layout_editor_absoluteY="451dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/love_fragment_btn"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_toEndOf="@+id/bar_fragment_button"
+                    android:text="Love"
+                    tools:layout_editor_absoluteX="229dp"
+                    tools:layout_editor_absoluteY="451dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/numbers_fragment_btn"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_toEndOf="@+id/love_fragment_btn"
+                    android:text="Numbers"
                     tools:layout_editor_absoluteX="229dp"
                     tools:layout_editor_absoluteY="451dp" />
 
@@ -136,7 +162,7 @@
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -144,27 +170,87 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/shapes_insights"
-                android:layout_width="190dp"
-                android:layout_height="170dp"
+                android:layout_width="200dp"
+                android:layout_height="140dp"
+                app:cardCornerRadius="4dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="-1dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginEnd="12dp"
                 android:layout_toStartOf="@+id/numbers_insights"
                 android:onClick="startActivityReport"
-                android:text="Shapes"></androidx.cardview.widget.CardView>
+                android:text="Shapes">
+
+                <TextView
+                    android:layout_width="195dp"
+                    android:layout_height="30dp"
+                    android:text="Favorite Shape"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="17dp"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Square"
+                    android:textSize="50dp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="10dp"></TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Click for more..."
+                    android:textColor="@color/colorPrimary"></TextView>
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/numbers_insights"
                 android:layout_width="150dp"
-                android:layout_height="170dp"
+                android:layout_height="140dp"
+                app:cardCornerRadius="4dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="-2dp"
-                android:layout_marginEnd="36dp"
+                android:layout_marginEnd="12dp"
                 android:onClick="startActivityReport"
-                android:text="Shapes"></androidx.cardview.widget.CardView>
+                android:text="Shapes">
+                <TextView
+                    android:layout_width="195dp"
+                    android:layout_height="30dp"
+                    android:text="Favorite Number"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="17dp"></TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="30dp"
+                    android:text="7"
+                    android:textSize="50dp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_horizontal"></TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Click for more..."
+                    android:textColor="@color/colorPrimary"></TextView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="41dp">
+                <TextView
+                    android:id="@+id/sensor_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TextView>
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
     <!-- Container for contents of drawer - use NavigationView to make configuration easier -->

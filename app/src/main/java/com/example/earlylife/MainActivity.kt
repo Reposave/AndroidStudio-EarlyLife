@@ -11,10 +11,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -24,8 +21,13 @@ import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.example.earlylife.Models.Quilt
 import com.google.android.material.navigation.NavigationView
 import java.util.*
+import com.tillster.smartquiltkotlin.Retrofit.RetrofitService
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 
 class MainActivity : AppCompatActivity() {
@@ -61,6 +63,33 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction =fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.bar_chart_fragment, ReportBarChart())
         fragmentTransaction.commit()
+
+        /*Using retrofit to get sensor data */
+        val compositeDisposable = CompositeDisposable()
+        compositeDisposable.add(
+            RetrofitService.ServiceBuilder.buildService().getShapes()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
+
+    }
+
+    private fun onFailure(t: Throwable) {
+        Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
+        var txt_activityID = findViewById<TextView>(R.id.sensor_data)
+
+        txt_activityID.text = t.message
+
+    }
+
+    private fun onResponse(response: Quilt)
+    {
+
+        var txt_activityID = findViewById<TextView>(R.id.sensor_data)
+
+
+        txt_activityID.text = response.name
+
 
     }
 
