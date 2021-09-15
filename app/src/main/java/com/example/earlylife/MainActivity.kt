@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -22,6 +23,7 @@ import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.example.earlylife.Models.Quilt
+import com.example.earlylife.QuiltActivities.QuiltActivity
 import com.google.android.material.navigation.NavigationView
 import java.util.*
 import com.tillster.smartquiltkotlin.Retrofit.RetrofitService
@@ -58,11 +60,18 @@ class MainActivity : AppCompatActivity() {
         lineChartButton.setOnClickListener { changeChartType(LineChartFragment()) }
         barChartButton.setOnClickListener { changeChartType(ReportBarChart()) }
 
-        //Instantiating the fragment on the screen which displays the graphs
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction =fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.bar_chart_fragment, ReportBarChart())
-        fragmentTransaction.commit()
+        /**
+         * Given that we have retrieved data from the db and is in an arraylist
+         */
+        var activityData:ArrayList<QuiltActivity> = arrayListOf(
+            QuiltActivity(0,"Love",34,14.toFloat()),
+            QuiltActivity(1,"Numbers",12,34.toFloat()),
+            QuiltActivity(2,"Pattern",13,56.toFloat())
+        )
+
+        setDefaultChart(activityData)
+
+
 
         /*Using retrofit to get sensor data */
         val compositeDisposable = CompositeDisposable()
@@ -82,15 +91,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun onResponse(response: Quilt)
-    {
-
+    private fun onResponse(response: Quilt) {
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
-
-
         txt_activityID.text = response.name
-
-
     }
 
     /**
@@ -109,7 +112,22 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction =fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.bar_chart_fragment, fragment)
         fragmentTransaction.commit()
+    }
 
+
+    /**
+     * sets the default bar chart
+     */
+    fun setDefaultChart(activityData: ArrayList<QuiltActivity>){
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction =fragmentManager.beginTransaction()
+        var barFragment = ReportBarChart()
+        var bundle = Bundle()
+        bundle.putSerializable("QuiltData",activityData)
+        barFragment.arguments = bundle
+        Log.e("Debug",bundle.toString())
+        fragmentTransaction.replace(R.id.bar_chart_fragment, barFragment)
+        fragmentTransaction.commit()
     }
 
 }
