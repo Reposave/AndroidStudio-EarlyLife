@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
+import com.example.earlylife.QuiltActivities.QuiltActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +38,15 @@ class ReportBarChart : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_report_bar_chart, container, false)
-        return activity?.let { BarChart(it) }
+        /**here we will create a connection tp the database, get all the rows and create an object of
+        type quiltactivity, add the objects to an araay, the use the array as a paramter
+         for the bar graph*/
+        var activityData:ArrayList<QuiltActivity> = arrayListOf(
+            QuiltActivity(0,"Love",34,14.toFloat()),
+            QuiltActivity(1,"Numbers",12,34.toFloat()),
+            QuiltActivity(2,"Pattern",13,56.toFloat())
+        )
+        return activity?.let { BarChart(it,activityData) }
     }
 
     companion object {
