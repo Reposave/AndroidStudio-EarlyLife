@@ -1,6 +1,7 @@
 package com.example.earlylife
 
 import android.content.Intent
+import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,8 +13,7 @@ class ConnectToQuilt : AppCompatActivity() {
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
 
         btnWifiConnect.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            startActivity( Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
         }
     }
 }
