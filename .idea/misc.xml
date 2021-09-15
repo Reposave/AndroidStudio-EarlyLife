@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_home_page.xml" value="0.2" />
+        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_main_backup.xml" value="0.16" />
-        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_report.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_report.xml" value="0.264" />
         <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/fragment_add.xml" value="0.21458333333333332" />
         <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/fragment_list.xml" value="0.264" />
       </map>
