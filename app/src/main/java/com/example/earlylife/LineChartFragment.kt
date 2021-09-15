@@ -44,8 +44,26 @@ class LineChartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_report_bar_chart, container, false)
-        return activity?.let { LineChart(it) }
+        return inflater.inflate(R.layout.fragment_line_chart, container, false)
+       // return activity?.let { LineChart(it) }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var anyChartView = (getView()?.findViewById(R.id.any_chart_view)) as AnyChartView
+        APIlib.getInstance().setActiveAnyChartView(anyChartView)
+
+        //Adding a progress meter
+        val successMeter = AnyChart.pie()
+        successMeter.innerRadius("80%")
+
+        val data = ArrayList<DataEntry>()
+        data.add(ValueDataEntry("Correct", 80))
+        data.add(ValueDataEntry("Incorrect", 20))
+        successMeter.data(data)
+
+        //Adding the chart to the UI
+        anyChartView.setChart(successMeter)
     }
 
     companion object {
