@@ -6,13 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".ConnectToQuilt">
 
+    <Button
+        android:id="@+id/btn_WifiConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/find_network"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65" />
+
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="93dp"
-        android:layout_height="63dp"
-        android:text="Connect to quilt"
+        android:id="@+id/textView3"
+        android:layout_width="274dp"
+        android:layout_height="62dp"
+        android:text="@string/instructions2"
+        android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.182" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="303dp"
+        android:layout_height="215dp"
+        android:text="@string/instructions"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.395" />
 </androidx.constraintlayout.widget.ConstraintLayout>
