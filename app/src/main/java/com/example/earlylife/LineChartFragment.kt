@@ -2,6 +2,7 @@ package com.example.earlylife
 
 import android.graphics.Point
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.example.earlylife.QuiltActivities.QuiltActivity
 import java.util.ArrayList
 import java.util.*
 
@@ -50,16 +52,24 @@ class LineChartFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        var bundle = this.arguments
+        Log.e("Debug", bundle.toString())
+        var Activitydata:ArrayList<QuiltActivity> = bundle?.get("QuiltData") as ArrayList<QuiltActivity>
+        var id = bundle?.getInt("ActivityID")
+
+        var activity = Activitydata.get(id)
+
         var anyChartView = (getView()?.findViewById(R.id.any_chart_view)) as AnyChartView
         APIlib.getInstance().setActiveAnyChartView(anyChartView)
 
         //Adding a progress meter
         val successMeter = AnyChart.pie()
-        successMeter.innerRadius("80%")
+        successMeter.innerRadius("60%")
 
         val data = ArrayList<DataEntry>()
-        data.add(ValueDataEntry("Correct", 80))
-        data.add(ValueDataEntry("Incorrect", 20))
+        data.add(ValueDataEntry("Correct", activity.correct))
+        data.add(ValueDataEntry("Incorrect", 100 - activity.correct))
         successMeter.data(data)
 
         //Adding the chart to the UI

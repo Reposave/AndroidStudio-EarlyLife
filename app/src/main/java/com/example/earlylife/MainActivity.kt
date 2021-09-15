@@ -51,24 +51,26 @@ class MainActivity : AppCompatActivity() {
             // Apply the adapter to the spinner
             spinner.adapter = adapter
         }
-
-        val spinnerListener = DateRangeSpinnerActivity(this)
-        spinner.onItemSelectedListener = spinnerListener
-        //Creating variables for the buttons on the screen and setting on click listeners for the buttons
-        val lineChartButton = findViewById<View>(R.id.line_fragment_button)
-        val barChartButton = findViewById<View>(R.id.bar_fragment_button)
-        lineChartButton.setOnClickListener { changeChartType(LineChartFragment()) }
-        barChartButton.setOnClickListener { changeChartType(ReportBarChart()) }
-
         /**
          * Given that we have retrieved data from the db and is in an arraylist
          */
         var activityData:ArrayList<QuiltActivity> = arrayListOf(
             QuiltActivity(0,"Love",34,14.toFloat()),
             QuiltActivity(1,"Numbers",12,34.toFloat()),
-            QuiltActivity(2,"Pattern",13,56.toFloat())
+            QuiltActivity(2,"Shapes",13,56.toFloat())
         )
+        val cardTitleText = findViewById<TextView>(R.id.card_title)
 
+        val spinnerListener = DateRangeSpinnerActivity(this)
+        spinner.onItemSelectedListener = spinnerListener
+        //Creating variables for the buttons on the screen and setting on click listeners for the buttons
+        val lineChartButton = findViewById<View>(R.id.line_fragment_button) //all
+        val barChartButton = findViewById<View>(R.id.bar_fragment_button).setOnClickListener { setDisplayActivity(2, activityData,cardTitleText) } //shapes
+        val loveChartButton = findViewById<View>(R.id.love_fragment_btn).setOnClickListener{ setDisplayActivity(0,activityData,cardTitleText) } //love
+        val numbersChartButton = findViewById<View>(R.id.numbers_fragment_btn).setOnClickListener { setDisplayActivity(1, activityData,cardTitleText) } //numbers
+
+        lineChartButton.setOnClickListener { setDefaultChart(activityData) } //all
+        //lineChartButton.setOnClickListener { changeChartType(LineChartFragment()) }
         setDefaultChart(activityData)
 
 
@@ -113,6 +115,18 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.bar_chart_fragment, fragment)
         fragmentTransaction.commit()
     }
+    fun setDisplayActivity(activityID:Int,activityData: ArrayList<QuiltActivity>,cardTitle: TextView ){
+        cardTitle.setText(activityData.get(activityID).activityName)
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction =fragmentManager.beginTransaction()
+        var activityFragment = LineChartFragment()
+        var bundle = Bundle()
+        bundle.putSerializable("QuiltData",activityData)
+        bundle.putInt("ActivityID",activityID)
+        activityFragment.arguments = bundle
+        fragmentTransaction.replace(R.id.bar_chart_fragment, activityFragment)
+        fragmentTransaction.commit()
+    }
 
 
     /**
@@ -125,7 +139,6 @@ class MainActivity : AppCompatActivity() {
         var bundle = Bundle()
         bundle.putSerializable("QuiltData",activityData)
         barFragment.arguments = bundle
-        Log.e("Debug",bundle.toString())
         fragmentTransaction.replace(R.id.bar_chart_fragment, barFragment)
         fragmentTransaction.commit()
     }

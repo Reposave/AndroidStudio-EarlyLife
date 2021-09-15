@@ -43,13 +43,7 @@ class ReportBarChart : Fragment() {
         type quiltactivity, add the objects to an araay, the use the array as a paramter
          for the bar graph*/
         var bundle = this.arguments
-        Log.e("Debug", bundle.toString())
         var data:ArrayList<QuiltActivity> = bundle?.get("QuiltData") as ArrayList<QuiltActivity>
-        var activityData:ArrayList<QuiltActivity> = arrayListOf(
-            QuiltActivity(0,"Love",34,14.toFloat()),
-            QuiltActivity(1,"Numbers",12,34.toFloat()),
-            QuiltActivity(2,"Pattern",13,56.toFloat())
-        )
         return activity?.let { BarChart(it,data) }
     }
 
