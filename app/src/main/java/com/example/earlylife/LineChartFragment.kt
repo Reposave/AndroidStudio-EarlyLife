@@ -54,7 +54,6 @@ class LineChartFragment : Fragment() {
         super.onStart()
 
         var bundle = this.arguments
-        Log.e("Debug", bundle.toString())
         var Activitydata:ArrayList<QuiltActivity> = bundle?.get("QuiltData") as ArrayList<QuiltActivity>
         var id = bundle?.getInt("ActivityID")
 
