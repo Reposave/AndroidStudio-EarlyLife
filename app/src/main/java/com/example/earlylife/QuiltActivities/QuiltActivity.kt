@@ -1,9 +1,11 @@
 package com.example.earlylife.QuiltActivities
 
-class QuiltActivity(var activityID:Int,
+import java.io.Serializable
+
+class QuiltActivity (var activityID:Int,
                     var activityName: String,
                     var correct: Int,
-                    var timeOnTask: Float) {
+                    var timeOnTask: Float) : Serializable {
 
     fun addTimeOnTask(time: Float){
         this.timeOnTask = this.timeOnTask + time
