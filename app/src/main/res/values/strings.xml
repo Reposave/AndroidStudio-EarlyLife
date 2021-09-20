@@ -3,8 +3,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reports">Reports</string>
+    <string name="find_network">Find Network</string>
     <string name="connect_to_quilt">Connect to quilt</string>
     <string name="ecd_resources">ECD Resources</string>
+    <string name="instructions">1. Press the "Find network button."\n\n
+                                    A new window will pop up. \n\n
+                                    2. In this window, search for the wifi network called "SmartQuilt" and connect to it. \n\n
+                                    Done, you may now continue using the app.</string>
+    <string name="instructions2">Steps to connecting to your Quilt.</string>
     <string-array name="date_range_array">
         <item>Last 24 hours</item>
         <item>Last 48 hours</item>
