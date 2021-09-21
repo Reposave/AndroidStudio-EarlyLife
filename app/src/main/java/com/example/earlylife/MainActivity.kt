@@ -22,11 +22,12 @@ import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.example.earlylife.Models.LearnShapes
 import com.example.earlylife.Models.Quilt
 import com.example.earlylife.QuiltActivities.QuiltActivity
 import com.google.android.material.navigation.NavigationView
 import java.util.*
-import com.tillster.smartquiltkotlin.Retrofit.RetrofitService
+import com.example.earlylife.Retrofit.RetrofitService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -89,13 +90,13 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
 
-        txt_activityID.text = t.message
+        txt_activityID.text = t.toString()
 
     }
 
     private fun onResponse(response: Quilt) {
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
-        txt_activityID.text = response.name
+        txt_activityID.text = response.LearnShapes.activityID
     }
 
     /**
