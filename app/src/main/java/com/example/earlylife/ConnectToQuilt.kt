@@ -72,16 +72,18 @@ class ConnectToQuilt : AppCompatActivity() {
 
             //Find a way to create a delay before running this next section of code.
             var i = 0
+            var count = 0
+
             while(i == 0) {
                 if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
                     val wifiInfo = wifiManager.connectionInfo
                     if (wifiInfo.networkId == -1) {
-                        Toast.makeText(this, "SmartQuilt network not found.", Toast.LENGTH_LONG)
-                            .show();
+                        count++
+                        Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show();
                         instructText.textView2.text = getString(R.string.instructions3)
                         // Not connected to an access point
                     } else {
-                        i = 1
+                        i++
                         Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
                         //Add download code.
                         DownloadData()
@@ -90,6 +92,7 @@ class ConnectToQuilt : AppCompatActivity() {
                         //Add delay.
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+                        break
                     }
                     // Connected to an access point
                 } else {
