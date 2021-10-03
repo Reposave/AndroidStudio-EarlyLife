@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.LearnShapes.timeOnTask)
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.LearnShapes.correct)
         }
-        /*
+
         val loveValues = ContentValues().apply {
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.Love.activityID)
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.Love.acticityName)
@@ -141,12 +141,12 @@ class MainActivity : AppCompatActivity() {
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.MarchShapes.correct)
         }
 
- */
-
         Log.d("Debug","Values created")
         // Insert the new row, returning the primary key value of the new row
         var newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, learnShapesValues)
-        //newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, loveValues)
+        newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, loveValues)
+        newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, matchShapesValues)
+        newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, learnNumbersValues)
 
         //reading the values from database
         val dbr = dbHelper.readableDatabase
