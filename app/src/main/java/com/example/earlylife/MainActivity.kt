@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
         val itemIds = mutableListOf<String>()
         with(cursor) {
             while (moveToNext()) {
-                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE))
+                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME))
                 itemIds.add(itemId)
             }
         }
