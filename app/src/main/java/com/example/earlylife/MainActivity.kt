@@ -41,9 +41,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
         //instantiating and setting values for the spinner
         val spinner: Spinner = findViewById(R.id.date_range_spinner)
+        var txt_activityID = findViewById<TextView>(R.id.sensor_data)
         //adding the options from the resource xml file
         ArrayAdapter.createFromResource(
             this,
@@ -57,11 +58,42 @@ class MainActivity : AppCompatActivity() {
         }
         /**
          * Given that we have retrieved data from the db and is in an arraylist
+         * We want to first connect to the databse, then get data from the database
          */
+
+        val dbr = dbHelper.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
+
+        var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME} = ?"
+        val cursor = dbr.query(
+            FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+            projection,             // The array of columns to return (pass null to get all)
+            selection,              // The columns for the WHERE clause
+            arrayOf("shapes"),          // The values for the WHERE clause
+            null,                // don't group the rows
+            null,                   // don't filter by row groups
+            null               // The sort order
+        )
+
+        val shapesStats = mutableListOf<String>()
+        with(cursor) {
+            while (moveToNext()) {
+                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME))
+                shapesStats.add(itemId)
+            }
+        }
+        cursor.close()
+        txt_activityID.setText(shapesStats.toString())
+
         var activityData:ArrayList<QuiltActivity> = arrayListOf(
             QuiltActivity(0,"Love",34,14.toFloat()),
             QuiltActivity(1,"Numbers",12,34.toFloat()),
-            QuiltActivity(2,"Shapes",13,56.toFloat())
+            QuiltActivity(2,"Shapes",13,getTimeOnTask("shapes").toFloat()),
+            QuiltActivity(2,"Match",13,56.toFloat())
         )
         val cardTitleText = findViewById<TextView>(R.id.card_title)
 
@@ -156,12 +188,13 @@ class MainActivity : AppCompatActivity() {
             FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
             FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
 
+        var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME} = ?"
         val cursor = dbr.query(
             FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
             projection,             // The array of columns to return (pass null to get all)
-            null,              // The columns for the WHERE clause
-            null,          // The values for the WHERE clause
-            null,                   // don't group the rows
+            selection,              // The columns for the WHERE clause
+            arrayOf("shapes"),          // The values for the WHERE clause
+            null,                // don't group the rows
             null,                   // don't filter by row groups
             null               // The sort order
         )
@@ -169,13 +202,52 @@ class MainActivity : AppCompatActivity() {
         val itemIds = mutableListOf<String>()
         with(cursor) {
             while (moveToNext()) {
-                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME))
+                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK))
                 itemIds.add(itemId)
             }
         }
         cursor.close()
         Log.e("Database", itemIds.toString())
         txt_activityID.setText(itemIds.toString())
+    }
+
+    /**
+     * Function takes in an activity name and returns the time on task for the activity
+     */
+    fun getTimeOnTask(activityName: String): Int{
+        var timeOnTask = 0
+        val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
+        val dbr = dbHelper.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
+
+        var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME} = ?"
+        val cursor = dbr.query(
+            FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+            projection,             // The array of columns to return (pass null to get all)
+            selection,              // The columns for the WHERE clause
+            arrayOf(activityName),          // The values for the WHERE clause
+            null,                // don't group the rows
+            null,                   // don't filter by row groups
+            null               // The sort order
+        )
+
+        val shapesStats = mutableListOf<String>()
+        with(cursor) {
+            while (moveToNext()) {
+                val itemId = getString(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME))
+                shapesStats.add(itemId)
+            }
+        }
+        cursor.close()
+
+        for(a in shapesStats){
+            timeOnTask += Integer.getInteger(a)
+        }
+        return timeOnTask
     }
 
     /**
