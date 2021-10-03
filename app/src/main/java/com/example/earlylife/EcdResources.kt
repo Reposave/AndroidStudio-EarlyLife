@@ -42,8 +42,8 @@ class EcdResources : AppCompatActivity() {
     }
 
     private fun learnToPlay() {
-        val intent = Intent(this, LearnToPlay::class.java)
-        startActivity(intent)
+       // val intent = Intent(this, LearnToPlay::class.java)
+        //startActivity(intent)
     }
 
 
