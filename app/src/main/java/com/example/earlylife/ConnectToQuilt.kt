@@ -7,18 +7,59 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import android.net.wifi.WifiConfiguration
+import java.lang.String
+import androidx.core.app.ActivityCompat
 
+import android.content.pm.PackageManager
+
+import androidx.core.content.ContextCompat
+
+
+
+@Suppress("DEPRECATION")
 
 class ConnectToQuilt : AppCompatActivity() {
     var edittext: EditText? = null
+    private val REQUEST_CHANGE_WIFI_STATE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect_to_quilt)
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
+        var ssid = "SmartQuilt"
+        var key = "CID3208till"
+
 
         btnWifiConnect.setOnClickListener {
-            startActivity( Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
+            //startActivity( Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
+            val permissionCheck =
+                ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.CHANGE_WIFI_STATE
+                )
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.CHANGE_WIFI_STATE),
+                    REQUEST_CHANGE_WIFI_STATE
+                )
+            } else {
+                //TODO
+            }
+
+            val wifiConfig = WifiConfiguration()
+            wifiConfig.SSID = String.format("\"%s\"", ssid)
+            wifiConfig.preSharedKey = String.format("\"%s\"", key)
+
+            val wifiManager = getSystemService(WIFI_SERVICE) as WifiManager
+//remember id
+//remember id
+            val netId = wifiManager.addNetwork(wifiConfig)
+            wifiManager.disconnect()
+            wifiManager.enableNetwork(netId, true)
+            wifiManager.reconnect()
         }
 
     }
@@ -48,4 +89,20 @@ class ConnectToQuilt : AppCompatActivity() {
 
                 return false;
             }*/
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        vararg permissions: kotlin.String?,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CHANGE_WIFI_STATE -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //TODO
+            }
+            else -> {
+            }
+        }
+    }
 }
