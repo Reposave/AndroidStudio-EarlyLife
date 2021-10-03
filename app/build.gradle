@@ -49,6 +49,8 @@ dependencies {
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
     implementation 'com.android.support:multidex:1.0.3'
    // implementation "androidx.activity:activity-ktx:$activity_version"
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.mindorks.android:prdownloader:0.6.0'
     implementation("androidx.cardview:cardview:1.0.0")
     def room_version = "2.3.0"
 

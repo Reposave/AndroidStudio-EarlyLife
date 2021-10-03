@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: io.data2viz.d2v:timer-android-debug:0.8.12@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/255f4245e541f698bb0aed3610327d38/jetified-timer-debug/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/255f4245e541f698bb0aed3610327d38/jetified-timer-debug/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/255f4245e541f698bb0aed3610327d38/jetified-timer-debug/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/336250cd5fbbacfa8380410b0dd3756f/jetified-timer-debug/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/336250cd5fbbacfa8380410b0dd3756f/jetified-timer-debug/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/336250cd5fbbacfa8380410b0dd3756f/jetified-timer-debug/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

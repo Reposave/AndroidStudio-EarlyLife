@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: io.data2viz.charts:core-android-debug:1.1.0-eap1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/63675d4abc552585746aff472cddd4e0/jetified-core-debug/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/63675d4abc552585746aff472cddd4e0/jetified-core-debug/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/63675d4abc552585746aff472cddd4e0/jetified-core-debug/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fb6d2bc3d0a40a2ced089a79476421b/jetified-core-debug/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fb6d2bc3d0a40a2ced089a79476421b/jetified-core-debug/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fb6d2bc3d0a40a2ced089a79476421b/jetified-core-debug/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

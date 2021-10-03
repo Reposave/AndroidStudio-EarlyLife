@@ -1,6 +1,7 @@
 package com.example.earlylife
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.widget.ListView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import android.os.Environment
+import java.io.File
+
 
 class EcdResources : AppCompatActivity() {
 
@@ -17,22 +21,10 @@ class EcdResources : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
-        //Access ListView from XML file
-        //val listView = findViewById<ListView>(R.id.main_listview)
         val cardView = findViewById<CardView>(R.id.card_view1)
-        cardView.setOnClickListener(clickListener)
+        cardView.setOnClickListener{ learnToPlay() }
 
-        // Adapter tells list what to render
-        //listView.adapter = CustomAdapter(this)
 
-       /** // Define list of ECD resources
-        val arrayAdapter: ArrayAdapter<String>
-        val resources = arrayOf("Resource 1", "Resource 2", "Resource 3", "Resource 4")
-
-        // Access ListView from XML file
-        var listView = findViewById<ListView>(R.id.userlist)
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, resources)
-        listView.adapter = arrayAdapter*/
     }
 
     private val clickListener: View.OnClickListener = View.OnClickListener { view ->
@@ -42,8 +34,13 @@ class EcdResources : AppCompatActivity() {
     }
 
     private fun learnToPlay() {
-       // val intent = Intent(this, LearnToPlay::class.java)
-        //startActivity(intent)
+        val file = File(Environment.getExternalStorageDirectory().absolutePath + "app/src/main/assets/earlychildhood_everyday_i_learn_through_play.pdf")
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.fromFile(file), "application/pdf")
+        intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+        startActivity(intent)
+       /** val intent = Intent(this, PdfViewActivity::class.java)
+        startActivity(intent)*/
     }
 
 
