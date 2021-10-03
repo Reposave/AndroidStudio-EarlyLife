@@ -6,10 +6,12 @@
 package com.example.earlylife
 
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -22,11 +24,13 @@ import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.example.earlylife.Models.LearnShapes
 import com.example.earlylife.Models.Quilt
 import com.example.earlylife.QuiltActivities.QuiltActivity
 import com.google.android.material.navigation.NavigationView
 import java.util.*
-import com.tillster.smartquiltkotlin.Retrofit.RetrofitService
+import com.example.earlylife.Retrofit.RetrofitService
+import com.example.earlylife.SQLite.FeedReaderContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -61,6 +65,8 @@ class MainActivity : AppCompatActivity() {
         )
         val cardTitleText = findViewById<TextView>(R.id.card_title)
 
+        //db access test
+
         val spinnerListener = DateRangeSpinnerActivity(this)
         spinner.onItemSelectedListener = spinnerListener
         //Creating variables for the buttons on the screen and setting on click listeners for the buttons
@@ -88,14 +94,88 @@ class MainActivity : AppCompatActivity() {
     private fun onFailure(t: Throwable) {
         Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
-
-        txt_activityID.text = t.message
+        txt_activityID.text = t.toString()
+        Log.d("ERROR",t.toString())
 
     }
 
     private fun onResponse(response: Quilt) {
+        Log.d("Response",response.toString())
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
-        txt_activityID.text = response.name
+        txt_activityID.text = response.LearnShapes.activityID
+
+        //saving to database
+        val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
+        // Gets the data repository in write mode
+        val db = dbHelper.writableDatabase
+
+        // Create a new map of values, where column names are the keys
+        val learnShapesValues = ContentValues().apply {
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.LearnShapes.activityID)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.LearnShapes.acticityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.LearnShapes.date)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.LearnShapes.timeOnTask)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.LearnShapes.correct)
+        }
+
+        val learnNumbersValues = ContentValues().apply {
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.LearnShapes.activityID)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.LearnShapes.acticityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.LearnShapes.date)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.LearnShapes.timeOnTask)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.LearnShapes.correct)
+        }
+        /*
+        val loveValues = ContentValues().apply {
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.Love.activityID)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.Love.acticityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.Love.date)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.Love.timeOnTask)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.Love.correct)
+        }
+        val matchShapesValues = ContentValues().apply {
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.MarchShapes.activityID)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.MarchShapes.acticityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.MarchShapes.date)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.MarchShapes.timeOnTask)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.MarchShapes.correct)
+        }
+
+ */
+
+        Log.d("Debug","Values created")
+        // Insert the new row, returning the primary key value of the new row
+        var newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, learnShapesValues)
+        //newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, loveValues)
+
+        //reading the values from database
+        val dbr = dbHelper.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
+
+        val cursor = dbr.query(
+            FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+            projection,             // The array of columns to return (pass null to get all)
+            null,              // The columns for the WHERE clause
+            null,          // The values for the WHERE clause
+            null,                   // don't group the rows
+            null,                   // don't filter by row groups
+            null               // The sort order
+        )
+
+        val itemIds = mutableListOf<String>()
+        with(cursor) {
+            while (moveToNext()) {
+                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE))
+                itemIds.add(itemId)
+            }
+        }
+        cursor.close()
+        Log.e("Database", itemIds.toString())
+        txt_activityID.setText(itemIds.toString())
     }
 
     /**

@@ -3,7 +3,6 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27113c5cfe03707f8adb0a9f829997cf/jetified-ui-graphics-1.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27113c5cfe03707f8adb0a9f829997cf/jetified-ui-graphics-1.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27113c5cfe03707f8adb0a9f829997cf/jetified-ui-graphics-1.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
