@@ -7,10 +7,14 @@
     <string name="connect_to_quilt">Connect to quilt</string>
     <string name="ecd_resources">ECD Resources</string>
     <string name="instructions">1. Press the "Find network button."\n\n
-                                    A new window will pop up. \n\n
-                                    2. In this window, search for the wifi network called "SmartQuilt" and connect to it. \n\n
-                                    Done, you may now continue using the app.</string>
+                                    A search for the network SmartQuilt shall begin \n\n
+                                    2. A message will pop up on success and \n\n
+                                    you will now be connected to the Quilt.</string>
     <string name="instructions2">Steps to connecting to your Quilt.</string>
+    <string name="instructions3">Connection Failed, Please try again or check if the network "SmartQuilt" \n\n
+                                    appears on your list of available wifi connections.</string>
+    <string name="instructions4">Wifi is off, please turn your wifi on then try again.</string>
+    <string name="instructions5">Data has been retrieved from the SmartQuilt.</string>
     <string-array name="date_range_array">
         <item>Last 24 hours</item>
         <item>Last 48 hours</item>
