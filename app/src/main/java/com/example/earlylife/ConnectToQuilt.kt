@@ -79,7 +79,7 @@ class ConnectToQuilt : AppCompatActivity() {
                     val wifiInfo = wifiManager.connectionInfo
                     if (wifiInfo.networkId == -1) {
                         count++
-                        Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
                         instructText.textView2.text = getString(R.string.instructions3)
                         // Not connected to an access point
                     } else {
