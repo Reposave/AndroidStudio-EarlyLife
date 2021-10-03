@@ -80,14 +80,18 @@ class MainActivity : AppCompatActivity() {
         spinner.onItemSelectedListener = spinnerListener
         //Creating variables for the buttons on the screen and setting on click listeners for the buttons
         val lineChartButton = findViewById<View>(R.id.line_fragment_button) //all
-        val barChartButton = findViewById<View>(R.id.bar_fragment_button).setOnClickListener { setDisplayActivity(2, activityData,cardTitleText) } //shapes
+        val barChartButton = findViewById<View>(R.id.bar_fragment_button).setOnClickListener {
+            setDisplayActivity(2, activityData,cardTitleText, "shapes")
+        } //shapes
         val loveChartButton = findViewById<View>(R.id.love_fragment_btn).setOnClickListener{
-            setDisplayActivity(0,activityData,cardTitleText)
+            setDisplayActivity(0,activityData,cardTitleText,"loves")
         } //love
         val numbersChartButton = findViewById<View>(R.id.numbers_fragment_btn).setOnClickListener {
-            setDisplayActivity(1, activityData,cardTitleText)
+            setDisplayActivity(1, activityData,cardTitleText, "numbers")
         } //numbers
-
+        val matchChartButton = findViewById<View>(R.id.match_shapes_fragment_btn).setOnClickListener {
+            setDisplayActivity(1, activityData,cardTitleText, "march")
+        } //numbers
         lineChartButton.setOnClickListener { setDefaultChart(activityData) } //all
         //lineChartButton.setOnClickListener { changeChartType(LineChartFragment()) }
         setDefaultChart(activityData)
@@ -183,7 +187,7 @@ class MainActivity : AppCompatActivity() {
         val itemIds = mutableListOf<String>()
         with(cursor) {
             while (moveToNext()) {
-                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK))
+                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT))
                 itemIds.add(itemId)
             }
         }
@@ -288,7 +292,7 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.bar_chart_fragment, fragment)
         fragmentTransaction.commit()
     }
-    fun setDisplayActivity(activityID:Int,activityData: ArrayList<QuiltActivity>,cardTitle: TextView ){
+    fun setDisplayActivity(activityID:Int,activityData: ArrayList<QuiltActivity>,cardTitle: TextView, activityName: String ){
         cardTitle.setText(activityData.get(activityID).activityName)
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction =fragmentManager.beginTransaction()
@@ -296,6 +300,7 @@ class MainActivity : AppCompatActivity() {
         var bundle = Bundle()
         bundle.putSerializable("QuiltData",activityData)
         bundle.putInt("ActivityID",activityID)
+        bundle.putString("ActivityName",activityName)
         activityFragment.arguments = bundle
         fragmentTransaction.replace(R.id.bar_chart_fragment, activityFragment)
         fragmentTransaction.commit()
