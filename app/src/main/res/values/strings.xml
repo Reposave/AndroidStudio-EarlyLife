@@ -11,6 +11,8 @@
                                     2. In this window, search for the wifi network called "SmartQuilt" and connect to it. \n\n
                                     Done, you may now continue using the app.</string>
     <string name="instructions2">Steps to connecting to your Quilt.</string>
+    <string name="instructions3">Connection Failed, Please try again or check if the network "SmartQuilt" \n\n
+                                    appears on your list of available wifi connections.</string>
     <string-array name="date_range_array">
         <item>Last 24 hours</item>
         <item>Last 48 hours</item>

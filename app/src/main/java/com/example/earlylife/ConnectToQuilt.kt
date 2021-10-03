@@ -14,7 +14,7 @@ import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 
 import androidx.core.content.ContextCompat
-
+import kotlinx.android.synthetic.main.activity_connect_to_quilt.view.*
 
 
 @Suppress("DEPRECATION")
@@ -26,6 +26,7 @@ class ConnectToQuilt : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect_to_quilt)
+        var instructText = findViewById<View>(R.id.textView2)
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
         var ssid = "SmartQuilt"
         var key = "CID3208till"
@@ -42,11 +43,10 @@ class ConnectToQuilt : AppCompatActivity() {
             if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(android.Manifest.permission.CHANGE_WIFI_STATE),
-                    REQUEST_CHANGE_WIFI_STATE
-                )
+                    arrayOf(android.Manifest.permission.CHANGE_WIFI_STATE), REQUEST_CHANGE_WIFI_STATE)
             } else {
-                //TODO
+                Toast.makeText(this, "SmartQuilt network not found.", Toast.LENGTH_LONG).show();
+                instructText.textView2.text = getString(R.string.instructions3)
             }
 
             val wifiConfig = WifiConfiguration()
@@ -99,9 +99,11 @@ class ConnectToQuilt : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             REQUEST_CHANGE_WIFI_STATE -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //TODO
+                Toast.makeText(this, "Excellent! Connected to Smart Quilt.", Toast.LENGTH_LONG).show();
             }
             else -> {
+                //This doesn't seem to be executed.
+                Toast.makeText(this, "onRequestPermissionsResult() Fail Condition", Toast.LENGTH_LONG).show();
             }
         }
     }
