@@ -3,9 +3,6 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8afbfb912c761fada8ca225b61e54a8c/jetified-AnyChart-Android-1.1.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8afbfb912c761fada8ca225b61e54a8c/jetified-AnyChart-Android-1.1.2/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a6b32c0a72f9ecaa909167fc7d6e6c7b/jetified-AnyChart-Android-1.1.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a6b32c0a72f9ecaa909167fc7d6e6c7b/jetified-AnyChart-Android-1.1.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a6b32c0a72f9ecaa909167fc7d6e6c7b/jetified-AnyChart-Android-1.1.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.AnyChart/AnyChart-Android/1.1.2/e6e0e75393f18a35fa3d6d8ee5260185e314eed9/AnyChart-Android-1.1.2-javadoc.jar!/" />
