@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import android.net.wifi.WifiConfiguration
-import java.lang.String
 import androidx.core.app.ActivityCompat
 
 import android.content.pm.PackageManager
@@ -22,12 +21,12 @@ import android.net.wifi.WifiInfo
 class ConnectToQuilt : AppCompatActivity() {
     var edittext: EditText? = null
     private val REQUEST_CHANGE_WIFI_STATE = 1
-    var instructText = findViewById<View>(R.id.textView2)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect_to_quilt)
-
+        var instructText = findViewById<View>(R.id.textView2)
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
         var ssid = "SmartQuilt"
         var key = "CID3208till"
@@ -61,6 +60,24 @@ class ConnectToQuilt : AppCompatActivity() {
             wifiManager.enableNetwork(netId, true)
             wifiManager.reconnect()
 
+
+            if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
+                val wifiInfo = wifiManager.connectionInfo
+                if (wifiInfo.networkId == -1) {
+                    Toast.makeText(this, "SmartQuilt network not found.", Toast.LENGTH_LONG).show();
+                    instructText.textView2.text = getString(R.string.instructions3)
+                    false // Not connected to an access point
+                } else {
+                    Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
+                    //Add download code.
+                    true
+                }
+                // Connected to an access point
+            } else {
+                instructText.textView2.text = getString(R.string.instructions4)
+                false // Wi-Fi adapter is OFF
+            }
+            //checkWifiOnAndConnected()
 
         }
 
@@ -109,22 +126,5 @@ class ConnectToQuilt : AppCompatActivity() {
             }
         }
     }
-    private fun checkWifiOnAndConnected(): Boolean {
-        val wifiMgr = getSystemService(android.content.Context.WIFI_SERVICE) as WifiManager
-        return if (wifiMgr.isWifiEnabled) { // Wi-Fi adapter is ON
-            val wifiInfo = wifiMgr.connectionInfo
-            if (wifiInfo.networkId == -1) {
-                Toast.makeText(this, "SmartQuilt network not found.", Toast.LENGTH_LONG).show();
-                instructText.textView2.text = getString(R.string.instructions3)
-                false // Not connected to an access point
-            } else {
-                Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
-                true
-            }
-            // Connected to an access point
-        } else {
-            instructText.textView2.text = getString(R.string.instructions4)
-            false // Wi-Fi adapter is OFF
-        }
-    }
+
 }
