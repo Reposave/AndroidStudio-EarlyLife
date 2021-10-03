@@ -5,6 +5,12 @@
     <string name="reports">Reports</string>
     <string name="connect_to_quilt">Connect to quilt</string>
     <string name="ecd_resources">ECD Resources</string>
+    <string name="r1">Learn through Play</string>
+    <string name="r2">UNICEF Education Kit Handbook</string>
+    <string name="r3">Learning Guidelines</string>
+    <string name="r4">NCF</string>
+
+
     <string-array name="date_range_array">
         <item>Last 24 hours</item>
         <item>Last 48 hours</item>
