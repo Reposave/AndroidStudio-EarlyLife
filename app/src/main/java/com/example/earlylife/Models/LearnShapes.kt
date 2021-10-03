@@ -1,9 +1,9 @@
 package com.example.earlylife.Models
 
-class LearnShapes {
-    var activityID: String? = null
-    var activityName: String? = null
-    var date: String? = null
-    var correct: String? = null
-    var timeOnTask: String? = null
-}
+data class LearnShapes (
+    val acticityName: String,
+    val activityID: String,
+    val correct: String,
+    val date: String,
+    val timeOnTask: String
+)

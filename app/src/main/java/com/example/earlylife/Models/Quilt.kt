@@ -4,5 +4,5 @@ data class Quilt(
     val LearnNumbers: LearnNumbers,
     val LearnShapes: LearnShapes,
     val Love: Love,
-    val MatchShapes: MarchShapes
+    val MarchShapes: MarchShapes
 )

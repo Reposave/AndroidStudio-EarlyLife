@@ -14,8 +14,5 @@ interface IQuilt
     @GET("/")
     fun getLove(): Observable<Quilt>
 
-    @GET("/")
-    fun getLearnShapes(): Observable<LearnShapes>
-
 
 }

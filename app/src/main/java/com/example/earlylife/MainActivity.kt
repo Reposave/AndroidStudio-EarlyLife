@@ -95,10 +95,12 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
         txt_activityID.text = t.toString()
+        Log.d("ERROR",t.toString())
 
     }
 
     private fun onResponse(response: Quilt) {
+        Log.d("Response",response.toString())
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
         txt_activityID.text = response.LearnShapes.activityID
 
@@ -108,20 +110,51 @@ class MainActivity : AppCompatActivity() {
         val db = dbHelper.writableDatabase
 
         // Create a new map of values, where column names are the keys
-        val values = ContentValues().apply {
+        val learnShapesValues = ContentValues().apply {
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.LearnShapes.activityID)
-            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.LearnShapes.activityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.LearnShapes.acticityName)
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.LearnShapes.date)
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.LearnShapes.timeOnTask)
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.LearnShapes.correct)
         }
 
+        val learnNumbersValues = ContentValues().apply {
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.LearnShapes.activityID)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.LearnShapes.acticityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.LearnShapes.date)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.LearnShapes.timeOnTask)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.LearnShapes.correct)
+        }
+        /*
+        val loveValues = ContentValues().apply {
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.Love.activityID)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.Love.acticityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.Love.date)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.Love.timeOnTask)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.Love.correct)
+        }
+        val matchShapesValues = ContentValues().apply {
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.MarchShapes.activityID)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.MarchShapes.acticityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.MarchShapes.date)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.MarchShapes.timeOnTask)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.MarchShapes.correct)
+        }
+
+ */
+
+        Log.d("Debug","Values created")
         // Insert the new row, returning the primary key value of the new row
-        val newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
+        var newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, learnShapesValues)
+        //newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, loveValues)
 
         //reading the values from database
         val dbr = dbHelper.readableDatabase
-        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME)
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
 
         val cursor = dbr.query(
             FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
@@ -133,10 +166,10 @@ class MainActivity : AppCompatActivity() {
             null               // The sort order
         )
 
-        val itemIds = mutableListOf<Long>()
+        val itemIds = mutableListOf<String>()
         with(cursor) {
             while (moveToNext()) {
-                val itemId = getLong(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID))
+                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE))
                 itemIds.add(itemId)
             }
         }

@@ -12,7 +12,7 @@ class RetrofitService
         private val client = OkHttpClient
             .Builder()
             .connectTimeout(5,TimeUnit.MINUTES)
-            .readTimeout(2, TimeUnit.MINUTES)
+            .readTimeout(5, TimeUnit.MINUTES)
             .build()
 
         private val retrofit = Retrofit.Builder()
