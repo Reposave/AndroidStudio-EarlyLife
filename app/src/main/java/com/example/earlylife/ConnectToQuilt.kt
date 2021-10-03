@@ -15,18 +15,19 @@ import android.content.pm.PackageManager
 
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_connect_to_quilt.view.*
-
+import android.net.wifi.WifiInfo
 
 @Suppress("DEPRECATION")
 
 class ConnectToQuilt : AppCompatActivity() {
     var edittext: EditText? = null
     private val REQUEST_CHANGE_WIFI_STATE = 1
+    var instructText = findViewById<View>(R.id.textView2)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect_to_quilt)
-        var instructText = findViewById<View>(R.id.textView2)
+
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
         var ssid = "SmartQuilt"
         var key = "CID3208till"
@@ -45,8 +46,7 @@ class ConnectToQuilt : AppCompatActivity() {
                     this,
                     arrayOf(android.Manifest.permission.CHANGE_WIFI_STATE), REQUEST_CHANGE_WIFI_STATE)
             } else {
-                Toast.makeText(this, "SmartQuilt network not found.", Toast.LENGTH_LONG).show();
-                instructText.textView2.text = getString(R.string.instructions3)
+
             }
 
             val wifiConfig = WifiConfiguration()
@@ -60,6 +60,8 @@ class ConnectToQuilt : AppCompatActivity() {
             wifiManager.disconnect()
             wifiManager.enableNetwork(netId, true)
             wifiManager.reconnect()
+
+
         }
 
     }
@@ -105,6 +107,24 @@ class ConnectToQuilt : AppCompatActivity() {
                 //This doesn't seem to be executed.
                 Toast.makeText(this, "onRequestPermissionsResult() Fail Condition", Toast.LENGTH_LONG).show();
             }
+        }
+    }
+    private fun checkWifiOnAndConnected(): Boolean {
+        val wifiMgr = getSystemService(android.content.Context.WIFI_SERVICE) as WifiManager
+        return if (wifiMgr.isWifiEnabled) { // Wi-Fi adapter is ON
+            val wifiInfo = wifiMgr.connectionInfo
+            if (wifiInfo.networkId == -1) {
+                Toast.makeText(this, "SmartQuilt network not found.", Toast.LENGTH_LONG).show();
+                instructText.textView2.text = getString(R.string.instructions3)
+                false // Not connected to an access point
+            } else {
+                Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
+                true
+            }
+            // Connected to an access point
+        } else {
+            instructText.textView2.text = getString(R.string.instructions4)
+            false // Wi-Fi adapter is OFF
         }
     }
 }

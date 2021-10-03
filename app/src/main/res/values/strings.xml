@@ -13,6 +13,7 @@
     <string name="instructions2">Steps to connecting to your Quilt.</string>
     <string name="instructions3">Connection Failed, Please try again or check if the network "SmartQuilt" \n\n
                                     appears on your list of available wifi connections.</string>
+    <string name="instructions4">Wifi is off, please turn your wifi then try again.</string>
     <string-array name="date_range_array">
         <item>Last 24 hours</item>
         <item>Last 48 hours</item>
