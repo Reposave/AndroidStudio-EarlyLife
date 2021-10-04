@@ -7,7 +7,14 @@
     android:orientation="vertical"
     tools:context=".EcdResources"
     android:padding="16dp"
+
+
     >
+    <com.pdfview.PDFView
+        android:id="@+id/activityMainPdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,6 +34,12 @@
             android:text="@string/ecd_resources"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="24sp" />
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
 
 
         <androidx.cardview.widget.CardView

@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+//import com.github.barteksc.pdfviewer.PDFView
+import com.pdfview.PDFView
+
 import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -24,7 +27,7 @@ class EcdResources : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
         val cardView = findViewById<CardView>(R.id.card_view1)
-        cardView.setOnClickListener{ learnToPlay() }
+        cardView.setOnClickListener { learnToPlay() }
 
 
     }
@@ -38,14 +41,17 @@ class EcdResources : AppCompatActivity() {
     private fun learnToPlay() {
         //val file = File(Environment.getExternalStorageDirectory().absolutePath + "app/src/main/assets/earlychildhood_everyday_i_learn_through_play.pdf")
         //val intent = Intent(Intent.ACTION_VIEW)
-        val imagePath: File = File(Context.getFilesDir(), "r1")
-        val newFile = File(imagePath, "earlychildhood_everyday_i_learn_through_play.pdf")
-        val contentUri: Uri = getUriForFile(getContext(), "com.mydomain.fileprovider", newFile)
-       // intent.setDataAndType(Uri.fromFile(file), "application/pdf")
-       // intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
-       // startActivity(intent)
-      // val intent = Intent(this, PdfViewActivity::class.java)
-        startActivity(intent)
+        // val imagePath: File = File(Context.getFilesDir(), "r1")
+        val mPDFView = findViewById<com.pdfview.PDFView>(R.id.pdfView)
+        mPDFView.fromAsset("earlychildhood_everyday_i_learn_through_play.pdf").show()
+
+    }
+}
+/**File file = new File("/app/assets/earlychildhood_everyday_i_learn_through_play.pdf");
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file), "pdf/*");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent); // Crashes on this line*/
     }
 
 

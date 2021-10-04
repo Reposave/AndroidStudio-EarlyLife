@@ -34,15 +34,13 @@
             android:label="Activity Report: Shapes" />
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.mydomain.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
-            ...
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
         </provider>
-        <paths xmlns:android="http://schemas.android.com/apk/res/android">
-            <files-path android:name="r1" android:path="app/src/main/assets"/>
-            ...
-        </paths>
         <activity
             android:name=".MainActivity"
             android:label="Quilt Usage Overview">
