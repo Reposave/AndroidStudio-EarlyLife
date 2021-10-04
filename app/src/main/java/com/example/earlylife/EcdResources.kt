@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-//import com.github.barteksc.pdfviewer.PDFView
 import com.pdfview.PDFView
 
 import android.widget.BaseAdapter
@@ -26,7 +25,7 @@ class EcdResources : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
-        val cardView = findViewById<CardView>(R.id.card_view1)
+        val cardView = findViewById<CardView>(R.id.card_view5)
         cardView.setOnClickListener { learnToPlay() }
 
 
@@ -42,7 +41,7 @@ class EcdResources : AppCompatActivity() {
         //val file = File(Environment.getExternalStorageDirectory().absolutePath + "app/src/main/assets/earlychildhood_everyday_i_learn_through_play.pdf")
         //val intent = Intent(Intent.ACTION_VIEW)
         // val imagePath: File = File(Context.getFilesDir(), "r1")
-        val mPDFView = findViewById<com.pdfview.PDFView>(R.id.pdfView)
+        val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
         mPDFView.fromAsset("earlychildhood_everyday_i_learn_through_play.pdf").show()
 
     }
