@@ -1,22 +1,11 @@
 package com.example.earlylife
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.widget.ListView
-import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
+
+//import android.R
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import com.pdfview.PDFView
-
-import android.widget.BaseAdapter
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import android.os.Environment
-import androidx.core.content.FileProvider.getUriForFile
-import java.io.File
-import java.security.AccessController.getContext
+import com.pdfview.PDFView
 
 
 class EcdResources : AppCompatActivity() {
@@ -43,6 +32,9 @@ class EcdResources : AppCompatActivity() {
         // val imagePath: File = File(Context.getFilesDir(), "r1")
         val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
         mPDFView.fromAsset("earlychildhood_everyday_i_learn_through_play.pdf").show()
+        // Hiding cards
+        val unicef = findViewById<CardView>(R.id.card_view)
+        unicef.visibility = View.GONE
 
     }
 }
