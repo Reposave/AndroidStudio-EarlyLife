@@ -35,6 +35,12 @@ class EcdResources : AppCompatActivity() {
         // Hiding cards
         val unicef = findViewById<CardView>(R.id.card_view)
         unicef.visibility = View.GONE
+        val ncf = findViewById<CardView>(R.id.card_view1)
+        ncf.visibility = View.GONE
+        val cards = findViewById<CardView>(R.id.card_view3)
+        cards.visibility = View.GONE
+        val someothercard = findViewById<CardView>(R.id.card_view5)
+        someothercard.visibility = View.GONE
 
     }
 }
