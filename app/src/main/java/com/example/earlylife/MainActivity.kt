@@ -41,9 +41,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
         //instantiating and setting values for the spinner
         val spinner: Spinner = findViewById(R.id.date_range_spinner)
+        var txt_activityID = findViewById<TextView>(R.id.sensor_data)
         //adding the options from the resource xml file
         ArrayAdapter.createFromResource(
             this,
@@ -57,24 +58,40 @@ class MainActivity : AppCompatActivity() {
         }
         /**
          * Given that we have retrieved data from the db and is in an arraylist
+         * We want to first connect to the databse, then get data from the database
          */
+        val dbr = dbHelper.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
+
         var activityData:ArrayList<QuiltActivity> = arrayListOf(
-            QuiltActivity(0,"Love",34,14.toFloat()),
-            QuiltActivity(1,"Numbers",12,34.toFloat()),
-            QuiltActivity(2,"Shapes",13,56.toFloat())
+            QuiltActivity(0,"Love",34,getTimeOnTask("loves").toFloat()),
+            QuiltActivity(1,"Numbers",12,getTimeOnTask("numbers").toFloat()),
+            QuiltActivity(2,"Shapes",13,getTimeOnTask("shapes").toFloat()),
+            QuiltActivity(2,"Match",13,getTimeOnTask("match").toFloat())
         )
         val cardTitleText = findViewById<TextView>(R.id.card_title)
 
         //db access test
-
         val spinnerListener = DateRangeSpinnerActivity(this)
         spinner.onItemSelectedListener = spinnerListener
         //Creating variables for the buttons on the screen and setting on click listeners for the buttons
         val lineChartButton = findViewById<View>(R.id.line_fragment_button) //all
-        val barChartButton = findViewById<View>(R.id.bar_fragment_button).setOnClickListener { setDisplayActivity(2, activityData,cardTitleText) } //shapes
-        val loveChartButton = findViewById<View>(R.id.love_fragment_btn).setOnClickListener{ setDisplayActivity(0,activityData,cardTitleText) } //love
-        val numbersChartButton = findViewById<View>(R.id.numbers_fragment_btn).setOnClickListener { setDisplayActivity(1, activityData,cardTitleText) } //numbers
-
+        val barChartButton = findViewById<View>(R.id.bar_fragment_button).setOnClickListener {
+            setDisplayActivity(2, activityData,cardTitleText, "shapes")
+        } //shapes
+        val loveChartButton = findViewById<View>(R.id.love_fragment_btn).setOnClickListener{
+            setDisplayActivity(0,activityData,cardTitleText,"loves")
+        } //love
+        val numbersChartButton = findViewById<View>(R.id.numbers_fragment_btn).setOnClickListener {
+            setDisplayActivity(1, activityData,cardTitleText, "numbers")
+        } //numbers
+        val matchChartButton = findViewById<View>(R.id.match_shapes_fragment_btn).setOnClickListener {
+            setDisplayActivity(1, activityData,cardTitleText, "march")
+        } //numbers
         lineChartButton.setOnClickListener { setDefaultChart(activityData) } //all
         //lineChartButton.setOnClickListener { changeChartType(LineChartFragment()) }
         setDefaultChart(activityData)
@@ -125,7 +142,7 @@ class MainActivity : AppCompatActivity() {
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.LearnShapes.timeOnTask)
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.LearnShapes.correct)
         }
-        /*
+
         val loveValues = ContentValues().apply {
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.Love.activityID)
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.Love.acticityName)
@@ -141,12 +158,12 @@ class MainActivity : AppCompatActivity() {
             put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.MarchShapes.correct)
         }
 
- */
-
         Log.d("Debug","Values created")
         // Insert the new row, returning the primary key value of the new row
         var newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, learnShapesValues)
-        //newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, loveValues)
+        newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, loveValues)
+        newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, matchShapesValues)
+        newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, learnNumbersValues)
 
         //reading the values from database
         val dbr = dbHelper.readableDatabase
@@ -156,12 +173,13 @@ class MainActivity : AppCompatActivity() {
             FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
             FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
 
+        var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME} = ?"
         val cursor = dbr.query(
             FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
             projection,             // The array of columns to return (pass null to get all)
-            null,              // The columns for the WHERE clause
-            null,          // The values for the WHERE clause
-            null,                   // don't group the rows
+            selection,              // The columns for the WHERE clause
+            arrayOf("shapes"),          // The values for the WHERE clause
+            null,                // don't group the rows
             null,                   // don't filter by row groups
             null               // The sort order
         )
@@ -169,13 +187,54 @@ class MainActivity : AppCompatActivity() {
         val itemIds = mutableListOf<String>()
         with(cursor) {
             while (moveToNext()) {
-                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE))
+                val itemId = getString(getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT))
                 itemIds.add(itemId)
             }
         }
         cursor.close()
         Log.e("Database", itemIds.toString())
         txt_activityID.setText(itemIds.toString())
+    }
+
+    /**
+     * Function takes in an activity name and returns the time on task for the activity
+     */
+    fun getTimeOnTask(activityName: String): Int{
+        var timeOnTask = 0
+        val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
+        val dbr = dbHelper.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
+
+        var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME} = ?"
+        val cursor = dbr.query(
+            FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+            projection,             // The array of columns to return (pass null to get all)
+            selection,              // The columns for the WHERE clause
+            arrayOf(activityName),          // The values for the WHERE clause
+            null,                // don't group the rows
+            null,                   // don't filter by row groups
+            null               // The sort order
+        )
+
+        val shapesStats = mutableListOf<Int>()
+        with(cursor) {
+            while (moveToNext()) {
+                val itemId = getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK))
+                shapesStats.add(itemId)
+            }
+        }
+        cursor.close()
+        Log.d("Debug", shapesStats.toString())
+        for(a in shapesStats){
+            if (a != null) {
+                timeOnTask += a //Integer.getInteger(a)
+            }
+        }
+        return timeOnTask
     }
 
     /**
@@ -195,7 +254,7 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.bar_chart_fragment, fragment)
         fragmentTransaction.commit()
     }
-    fun setDisplayActivity(activityID:Int,activityData: ArrayList<QuiltActivity>,cardTitle: TextView ){
+    fun setDisplayActivity(activityID:Int,activityData: ArrayList<QuiltActivity>,cardTitle: TextView, activityName: String ){
         cardTitle.setText(activityData.get(activityID).activityName)
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction =fragmentManager.beginTransaction()
@@ -203,6 +262,7 @@ class MainActivity : AppCompatActivity() {
         var bundle = Bundle()
         bundle.putSerializable("QuiltData",activityData)
         bundle.putInt("ActivityID",activityID)
+        bundle.putString("ActivityName",activityName)
         activityFragment.arguments = bundle
         fragmentTransaction.replace(R.id.bar_chart_fragment, activityFragment)
         fragmentTransaction.commit()

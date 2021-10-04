@@ -27,7 +27,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/view"
             android:layout_width="370dp"
-            android:layout_height="480dp"
+            android:layout_height="500dp"
             android:layout_gravity="center"
             app:cardCornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +87,7 @@
                     app:layout_constraintTop_toBottomOf="@id/top_date_range">
 
                 </FrameLayout>
+
                 <com.google.android.material.chip.Chip
                     android:id="@+id/line_fragment_button"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -95,7 +96,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="19dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="56dp"
                     android:text="All"
                     app:layout_constraintVertical_bias="0.302" />
 
@@ -105,8 +106,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginBottom="56dp"
                     android:layout_toEndOf="@+id/line_fragment_button"
                     android:text="Shapes"
                     tools:layout_editor_absoluteX="229dp"
@@ -118,8 +119,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="57dp"
                     android:layout_toEndOf="@+id/bar_fragment_button"
                     android:text="Love"
                     tools:layout_editor_absoluteX="229dp"
@@ -131,10 +132,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginStart="-217dp"
+                    android:layout_marginBottom="11dp"
                     android:layout_toEndOf="@+id/love_fragment_btn"
                     android:text="Numbers"
+                    tools:layout_editor_absoluteX="229dp"
+                    tools:layout_editor_absoluteY="451dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/match_shapes_fragment_btn"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="56dp"
+                    android:layout_toEndOf="@+id/love_fragment_btn"
+                    android:text="Match Shapes"
                     tools:layout_editor_absoluteX="229dp"
                     tools:layout_editor_absoluteY="451dp" />
 
@@ -249,7 +263,7 @@
                     android:id="@+id/sensor_data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="35dp"></TextView>
+                    android:textSize="15dp"></TextView>
             </androidx.cardview.widget.CardView>
 
         </RelativeLayout>

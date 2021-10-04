@@ -22,6 +22,7 @@
         </com.anychart.AnyChartView>
 
         <TextView
+            android:id="@+id/info_text"
             android:layout_width="180dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
