@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.anychart.APIlib
 import com.anychart.AnyChart
 import com.anychart.AnyChartView
@@ -64,14 +65,15 @@ class LineChartFragment : Fragment() {
 
         var anyChartView = (getView()?.findViewById(R.id.any_chart_view)) as AnyChartView
         APIlib.getInstance().setActiveAnyChartView(anyChartView)
+        var txtView = getView()?.findViewById<TextView>(R.id.info_text)
 
         //Adding a progress meter
         val successMeter = AnyChart.pie()
         successMeter.innerRadius("60%")
-        val correct = activityName?.let { getCorrect(it) }
+        val correct = activityName?.let { getCorrect(it, txtView) }
         val data = ArrayList<DataEntry>()
         data.add(ValueDataEntry("Correct",correct))
-        data.add(ValueDataEntry("Incorrect", 100 - correct!!))
+        data.add(ValueDataEntry("Incorrect", 500 - correct!!))
         successMeter.data(data)
 
         //Adding the chart to the UI
@@ -98,8 +100,8 @@ class LineChartFragment : Fragment() {
             }
     }
 
-    fun getCorrect(activityName: String): Int{
-        var timeOnTask = 0
+    fun getCorrect(activityName: String, txtView: TextView?): Int{
+        var correct = 0
         val dbHelper = context?.let { FeedReaderContract.FeedReaderDbHelper(it) }
         val dbr = dbHelper?.readableDatabase
         val projection = arrayOf(
@@ -123,7 +125,7 @@ class LineChartFragment : Fragment() {
         val shapesStats = mutableListOf<Int>()
         with(cursor) {
             while (this?.moveToNext() == true) {
-                val itemId = getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK))
+                val itemId = getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT))
                 shapesStats.add(itemId)
             }
         }
@@ -133,9 +135,12 @@ class LineChartFragment : Fragment() {
         Log.d("Debug", shapesStats.toString())
         for(a in shapesStats){
             if (a != null) {
-                timeOnTask += a //Integer.getInteger(a)
+                correct += a //Integer.getInteger(a)
             }
         }
-        return timeOnTask
+        if (txtView != null) {
+            txtView.setText(correct.toString())
+        }
+        return correct
     }
 }

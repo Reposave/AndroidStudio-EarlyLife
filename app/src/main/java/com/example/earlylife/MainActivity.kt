@@ -237,44 +237,6 @@ class MainActivity : AppCompatActivity() {
         return timeOnTask
     }
 
-    fun getCorrect(activityName: String): Int{
-        var timeOnTask = 0
-        val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
-        val dbr = dbHelper.readableDatabase
-        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
-            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
-            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
-            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
-            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
-
-        var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT} = ?"
-        val cursor = dbr.query(
-            FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
-            projection,             // The array of columns to return (pass null to get all)
-            selection,              // The columns for the WHERE clause
-            arrayOf(activityName),          // The values for the WHERE clause
-            null,                // don't group the rows
-            null,                   // don't filter by row groups
-            null               // The sort order
-        )
-
-        val shapesStats = mutableListOf<Int>()
-        with(cursor) {
-            while (moveToNext()) {
-                val itemId = getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK))
-                shapesStats.add(itemId)
-            }
-        }
-        cursor.close()
-        Log.d("Debug", shapesStats.toString())
-        for(a in shapesStats){
-            if (a != null) {
-                timeOnTask += a //Integer.getInteger(a)
-            }
-        }
-        return timeOnTask
-    }
-
     /**
      * Function starts the individual report activity, invoked when button clicked
      */
