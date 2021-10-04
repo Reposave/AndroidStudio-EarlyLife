@@ -2,7 +2,9 @@ package com.example.earlylife
 
 import android.graphics.Point
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import com.anychart.APIlib
 import com.anychart.AnyChart
@@ -17,6 +19,11 @@ class ActivityReport : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
 
+        // calling the action bar
+        val actionBar = supportActionBar
+
+        // showing the back button in action bar
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
 
         var anyChartView: AnyChartView = findViewById(R.id.any_chart_view)
         APIlib.getInstance().setActiveAnyChartView(anyChartView)
@@ -55,5 +62,14 @@ class ActivityReport : AppCompatActivity() {
         anyChartLineView.setChart(lineGraph)
 
 
+    }
+    override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

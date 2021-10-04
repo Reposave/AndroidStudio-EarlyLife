@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.BaseColumns
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -34,6 +36,7 @@ import com.example.earlylife.SQLite.FeedReaderContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import androidx.appcompat.app.ActionBar;
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,6 +45,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
+
+        // calling the action bar
+        val actionBar = supportActionBar
+
+        // showing the back button in action bar
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
+
         //instantiating and setting values for the spinner
         val spinner: Spinner = findViewById(R.id.date_range_spinner)
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
@@ -107,7 +117,15 @@ class MainActivity : AppCompatActivity() {
                 .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
 
     }
-
+    override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
     private fun onFailure(t: Throwable) {
         Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)

@@ -12,6 +12,7 @@ import android.net.wifi.WifiConfiguration
 import androidx.core.app.ActivityCompat
 
 import android.content.pm.PackageManager
+import android.graphics.Color
 
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_connect_to_quilt.view.*
@@ -19,7 +20,9 @@ import android.net.wifi.WifiInfo
 import android.os.Handler
 import android.provider.BaseColumns
 import android.util.Log
+import android.view.MenuItem
 import android.widget.TextView
+import androidx.annotation.NonNull
 import com.example.earlylife.Models.Quilt
 import com.example.earlylife.Retrofit.RetrofitService
 import com.example.earlylife.SQLite.FeedReaderContract
@@ -38,10 +41,16 @@ class ConnectToQuilt : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect_to_quilt)
         var instructText = findViewById<View>(R.id.textView2)
+        var tool_bar = findViewById<View>(R.id.toolbar)
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
         var ssid = "SmartQuilt"
         var key = "CID3208till"
 
+        // calling the action bar
+        val actionBar = supportActionBar
+
+        // showing the back button in action bar
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
 
         btnWifiConnect.setOnClickListener {
             //startActivity( Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
@@ -82,6 +91,7 @@ class ConnectToQuilt : AppCompatActivity() {
                         instructText.textView2.text = getString(R.string.instructions3)
                         // Not connected to an access point
                     } else {
+                        tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
                         Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
                         //Add download code.
                         DownloadData()
@@ -102,6 +112,15 @@ class ConnectToQuilt : AppCompatActivity() {
 
         }
 
+    }
+    override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
     /*private fun addKeyListener() {
 
