@@ -1,5 +1,6 @@
 package com.example.earlylife
 
+import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
 import android.provider.BaseColumns
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import com.anychart.APIlib
 import com.anychart.AnyChart
@@ -31,6 +33,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class LineChartFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    private var activityName: String? = null
     private var param1: String? = null
     private var param2: String? = null
 
@@ -59,13 +62,17 @@ class LineChartFragment : Fragment() {
         var bundle = this.arguments
         var Activitydata:ArrayList<QuiltActivity> = bundle?.get("QuiltData") as ArrayList<QuiltActivity>
         var id = bundle?.getInt("ActivityID")
-        var activityName = bundle?.getString("ActivityName")
+        activityName = bundle?.getString("ActivityName")
 
         var activity = Activitydata.get(id)
 
         var anyChartView = (getView()?.findViewById(R.id.any_chart_view)) as AnyChartView
         APIlib.getInstance().setActiveAnyChartView(anyChartView)
         var txtView = getView()?.findViewById<TextView>(R.id.info_text)
+        var btnStartActivity = getView()?.findViewById<Button>(R.id.btn_individual_activity)
+        if (btnStartActivity != null) {
+            btnStartActivity.setOnClickListener{ startIndividualActivityReport() }
+        }
 
         //Adding a progress meter
         val successMeter = AnyChart.pie()
@@ -98,6 +105,12 @@ class LineChartFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    fun startIndividualActivityReport(){
+        val intent = Intent(activity,ActivityReport::class.java)
+        intent.putExtra("ActivityName",activityName)
+        startActivity(intent)
     }
 
     fun getCorrect(activityName: String, txtView: TextView?): Int{
