@@ -16,6 +16,7 @@ import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_connect_to_quilt.view.*
 import android.net.wifi.WifiInfo
+import android.os.Handler
 import android.provider.BaseColumns
 import android.util.Log
 import android.widget.TextView
@@ -71,19 +72,16 @@ class ConnectToQuilt : AppCompatActivity() {
             wifiManager.reconnect()
 
             //Find a way to create a delay before running this next section of code.
-            var i = 0
-            var count = 0
+            instructText.textView2.text = getString(R.string.instructions6)
 
-            while(i == 0) {
+            Handler().postDelayed({
                 if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
                     val wifiInfo = wifiManager.connectionInfo
                     if (wifiInfo.networkId == -1) {
-                        count++
                         //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
                         instructText.textView2.text = getString(R.string.instructions3)
                         // Not connected to an access point
                     } else {
-                        i++
                         Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
                         //Add download code.
                         DownloadData()
@@ -92,14 +90,14 @@ class ConnectToQuilt : AppCompatActivity() {
                         //Add delay.
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
-                        break
                     }
                     // Connected to an access point
                 } else {
                     instructText.textView2.text = getString(R.string.instructions4)
                     // Wi-Fi adapter is OFF
                 }
-            }
+            }, 4000)
+
             //checkWifiOnAndConnected()
 
         }
