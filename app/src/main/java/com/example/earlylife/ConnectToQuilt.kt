@@ -12,6 +12,7 @@ import android.net.wifi.WifiConfiguration
 import androidx.core.app.ActivityCompat
 
 import android.content.pm.PackageManager
+import android.graphics.Color
 
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_connect_to_quilt.view.*
@@ -40,6 +41,7 @@ class ConnectToQuilt : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect_to_quilt)
         var instructText = findViewById<View>(R.id.textView2)
+        var tool_bar = findViewById<View>(R.id.toolbar)
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
         var ssid = "SmartQuilt"
         var key = "CID3208till"
@@ -89,6 +91,7 @@ class ConnectToQuilt : AppCompatActivity() {
                         instructText.textView2.text = getString(R.string.instructions3)
                         // Not connected to an access point
                     } else {
+                        tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
                         Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
                         //Add download code.
                         DownloadData()
