@@ -32,6 +32,17 @@
         <activity
             android:name=".ActivityReport"
             android:label="Activity Report: Shapes" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.mydomain.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            ...
+        </provider>
+        <paths xmlns:android="http://schemas.android.com/apk/res/android">
+            <files-path android:name="r1" android:path="app/src/main/assets"/>
+            ...
+        </paths>
         <activity
             android:name=".MainActivity"
             android:label="Quilt Usage Overview">
@@ -44,6 +55,7 @@
             </intent-filter>
             -->
         </activity>
+
     </application>
 
 </manifest>

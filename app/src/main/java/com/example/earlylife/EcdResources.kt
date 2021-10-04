@@ -12,7 +12,9 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import android.os.Environment
+import androidx.core.content.FileProvider.getUriForFile
 import java.io.File
+import java.security.AccessController.getContext
 
 
 class EcdResources : AppCompatActivity() {
@@ -34,13 +36,16 @@ class EcdResources : AppCompatActivity() {
     }
 
     private fun learnToPlay() {
-        val file = File(Environment.getExternalStorageDirectory().absolutePath + "app/src/main/assets/earlychildhood_everyday_i_learn_through_play.pdf")
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.setDataAndType(Uri.fromFile(file), "application/pdf")
-        intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+        //val file = File(Environment.getExternalStorageDirectory().absolutePath + "app/src/main/assets/earlychildhood_everyday_i_learn_through_play.pdf")
+        //val intent = Intent(Intent.ACTION_VIEW)
+        val imagePath: File = File(Context.getFilesDir(), "r1")
+        val newFile = File(imagePath, "earlychildhood_everyday_i_learn_through_play.pdf")
+        val contentUri: Uri = getUriForFile(getContext(), "com.mydomain.fileprovider", newFile)
+       // intent.setDataAndType(Uri.fromFile(file), "application/pdf")
+       // intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+       // startActivity(intent)
+      // val intent = Intent(this, PdfViewActivity::class.java)
         startActivity(intent)
-       /** val intent = Intent(this, PdfViewActivity::class.java)
-        startActivity(intent)*/
     }
 
 
