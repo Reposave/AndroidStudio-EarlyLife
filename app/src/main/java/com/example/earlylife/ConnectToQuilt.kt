@@ -19,7 +19,9 @@ import android.net.wifi.WifiInfo
 import android.os.Handler
 import android.provider.BaseColumns
 import android.util.Log
+import android.view.MenuItem
 import android.widget.TextView
+import androidx.annotation.NonNull
 import com.example.earlylife.Models.Quilt
 import com.example.earlylife.Retrofit.RetrofitService
 import com.example.earlylife.SQLite.FeedReaderContract
@@ -42,6 +44,11 @@ class ConnectToQuilt : AppCompatActivity() {
         var ssid = "SmartQuilt"
         var key = "CID3208till"
 
+        // calling the action bar
+        val actionBar = supportActionBar
+
+        // showing the back button in action bar
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
 
         btnWifiConnect.setOnClickListener {
             //startActivity( Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
@@ -102,6 +109,15 @@ class ConnectToQuilt : AppCompatActivity() {
 
         }
 
+    }
+    override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
     /*private fun addKeyListener() {
 
