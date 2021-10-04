@@ -14,6 +14,7 @@ import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.example.earlylife.SQLite.FeedReaderContract
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ActivityReport : AppCompatActivity() {
@@ -57,21 +58,24 @@ class ActivityReport : AppCompatActivity() {
         //adding the line graph
         val lineGraph = AnyChart.line()
 
-        val lineData = ArrayList<DataEntry>()
+        val lineData = activityName?.let { getWeeklyActivity(it) }
+        /*
         lineData.add(ValueDataEntry("Sunday",3))
         lineData.add(ValueDataEntry("Monday",5))
         lineData.add(ValueDataEntry("Wednesday",1))
         lineData.add(ValueDataEntry("Thursday",2))
         lineData.add(ValueDataEntry("Friday",0))
         lineData.add(ValueDataEntry("Saturday",2))
+        *
+         */
         lineGraph.data(lineData)
         anyChartLineView.setChart(lineGraph)
 
 
     }
 
-    fun getCorrect(activityName: String, txtView: TextView?): Int{
-        var correct = 0
+    fun getWeeklyActivity(activityName: String): ArrayList<DataEntry>{
+        val lineData = ArrayList<DataEntry>()
         val dbHelper =  FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
         val dbr = dbHelper?.readableDatabase
         val projection = arrayOf(
@@ -92,25 +96,23 @@ class ActivityReport : AppCompatActivity() {
             null               // The sort order
         )
 
-        val shapesStats = mutableListOf<Int>()
+        val date = mutableListOf<String>()
+        val time = mutableListOf<Int>()
         with(cursor) {
             while (this?.moveToNext() == true) {
-                val itemId = getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT))
-                shapesStats.add(itemId)
+                val d = getString(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_DATE))
+                date.add(d)
+                val t = getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK))
+                time.add(t)
             }
         }
         if (cursor != null) {
             cursor.close()
         }
-        Log.d("Debug", shapesStats.toString())
-        for(a in shapesStats){
-            if (a != null) {
-                correct += a //Integer.getInteger(a)
-            }
+
+        for(i in 0..date.size-1) {
+            lineData.add(ValueDataEntry(date[i], time[i]))
         }
-        if (txtView != null) {
-            txtView.setText(correct.toString())
-        }
-        return correct
+        return lineData
     }
 }
