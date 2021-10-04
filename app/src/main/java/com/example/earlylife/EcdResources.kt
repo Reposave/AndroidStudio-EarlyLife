@@ -1,5 +1,4 @@
 package com.example.earlylife
-
 //import android.R
 import android.os.Bundle
 import android.view.View
@@ -14,73 +13,62 @@ class EcdResources : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
-        val cardView = findViewById<CardView>(R.id.card_view5)
-        cardView.setOnClickListener { learnToPlay() }
 
+        // Learn through Play card clicked
+        val cardView = findViewById<CardView>(R.id.card_view)
+        cardView.setOnClickListener { learnThroughPlay() }
+
+        // Unicef card clicked
+        val cardView1 = findViewById<CardView>(R.id.card_view1)
+        cardView1.setOnClickListener { unicef() }
+
+        // Learning Guidelines card clicked
+        val cardView3 = findViewById<CardView>(R.id.card_view3)
+        cardView3.setOnClickListener { learningGuidelines() }
+
+        // NCF card clicked
+        val cardView5 = findViewById<CardView>(R.id.card_view5)
+        cardView5.setOnClickListener { NCF() }
 
     }
 
-    private val clickListener: View.OnClickListener = View.OnClickListener { view ->
-        when (view.id) {
-            R.id.card_view1 -> learnToPlay()
-        }
-    }
 
-    private fun learnToPlay() {
-        //val file = File(Environment.getExternalStorageDirectory().absolutePath + "app/src/main/assets/earlychildhood_everyday_i_learn_through_play.pdf")
-        //val intent = Intent(Intent.ACTION_VIEW)
-        // val imagePath: File = File(Context.getFilesDir(), "r1")
+
+    private fun learnThroughPlay() {
+        // Display Learn Through Play resource when selected
         val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
         mPDFView.fromAsset("earlychildhood_everyday_i_learn_through_play.pdf").show()
-        // Hiding cards
-        val unicef = findViewById<CardView>(R.id.card_view)
-        unicef.visibility = View.GONE
-        val ncf = findViewById<CardView>(R.id.card_view1)
-        ncf.visibility = View.GONE
-        val cards = findViewById<CardView>(R.id.card_view3)
-        cards.visibility = View.GONE
-        val someothercard = findViewById<CardView>(R.id.card_view5)
-        someothercard.visibility = View.GONE
+        hide()
+    }
 
+    private fun unicef(){
+        // Display UNICEF pdf resource when selected
+        val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
+        mPDFView.fromAsset("unicef.pdf").show()
+        hide()
+    }
+    private fun learningGuidelines(){
+        // Display Learning guidelines pdf resource when selected
+        val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
+        mPDFView.fromAsset("lg.pdf").show()
+        hide()
+    }
+    private fun NCF(){
+        // Display NCF pdf resource when selected
+        val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
+        mPDFView.fromAsset("ncf.pdf").show()
+        hide()
+    }
+
+    private fun hide(){
+        /** This function hides all the cards while a resource is being viewed*/
+        val unicefCard = findViewById<CardView>(R.id.card_view)
+        unicefCard.visibility = View.GONE
+        val learnThroughPlayCard = findViewById<CardView>(R.id.card_view1)
+        learnThroughPlayCard.visibility = View.GONE
+        val learningGuidelinesCard = findViewById<CardView>(R.id.card_view3)
+        learningGuidelinesCard.visibility = View.GONE
+        val ncfCard = findViewById<CardView>(R.id.card_view5)
+        ncfCard.visibility = View.GONE
     }
 }
-/**File file = new File("/app/assets/earlychildhood_everyday_i_learn_through_play.pdf");
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), "pdf/*");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent); // Crashes on this line*/
-    }
-
-
-
-
-}
-/*
-private class CustomAdapter(context : Context): BaseAdapter(){
-
-    private val aContext : Context
-
-    init{
-        aContext = context
-    }
-    // Responsible for rows in list
-    override fun getCount(): Int {
-        TODO("Not yet implemented")
-        return 5
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getItem(position: Int): Any {
-        return "Test String"
-    }
-
-    // Renders out each row
-    override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
-        val textView = TextView(aContext)
-        textView.text = "HERE is my ROW for my LISTVIEW"
-        return textView
-    }
-}*/
