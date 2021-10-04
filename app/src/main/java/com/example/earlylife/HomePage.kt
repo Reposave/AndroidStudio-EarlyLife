@@ -24,7 +24,7 @@ class HomePage : AppCompatActivity() {
         }
 
         btnEcdResources.setOnClickListener {
-            val intent = Intent(this,Ecd_Resources::class.java)
+            val intent = Intent(this,EcdResources::class.java)
             startActivity(intent)
         }
 

@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.legacy:legacy-support-core-ui:1.0.0@aar">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a59342ff7c1bd40fdaa70a9f8d7a65e/legacy-support-core-ui-1.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a59342ff7c1bd40fdaa70a9f8d7a65e/legacy-support-core-ui-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a59342ff7c1bd40fdaa70a9f8d7a65e/legacy-support-core-ui-1.0.0/AndroidManifest.xml" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dc90326e8b559506d8ae3d8429bbf634/legacy-support-core-ui-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dc90326e8b559506d8ae3d8429bbf634/legacy-support-core-ui-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dc90326e8b559506d8ae3d8429bbf634/legacy-support-core-ui-1.0.0/AndroidManifest.xml" />
+>>>>>>> ecd_resources
     </CLASSES>
     <JAVADOC />
     <SOURCES>

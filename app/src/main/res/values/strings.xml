@@ -6,6 +6,7 @@
     <string name="find_network">Find Network</string>
     <string name="connect_to_quilt">Connect to quilt</string>
     <string name="ecd_resources">ECD Resources</string>
+<<<<<<< HEAD
 
     <string name="instructions">1. Press the "Find network button."\n\n
                                     A search for the network SmartQuilt shall begin \n\n
@@ -17,6 +18,13 @@
     <string name="instructions4">Wifi is off, please turn your wifi on then try again.</string>
     <string name="instructions5">Data has been retrieved from the SmartQuilt.</string>
     <string name="instructions6">Searching...</string>
+=======
+    <string name="r1">Learn through Play</string>
+    <string name="r2">UNICEF Education Kit Handbook</string>
+    <string name="r3">Learning Guidelines</string>
+    <string name="r4">NCF</string>
+
+>>>>>>> ecd_resources
 
     <string-array name="date_range_array">
         <item>Last 24 hours</item>
