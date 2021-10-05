@@ -25,7 +25,7 @@ class EcdResources : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
 
-<<<<<<< HEAD
+
         //Toolbars may break this screen due to linear Layout, fix after merge.
         var tool_bar = findViewById<View>(R.id.toolbar)
 
@@ -35,10 +35,10 @@ class EcdResources : AppCompatActivity() {
         // showing the back button in action bar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
 
-=======
+
         // Fonts
         setFonts()
->>>>>>> ecdUI
+
         // Learn through Play card clicked
         val cardView = findViewById<CardView>(R.id.learnCard)
         cardView.setOnClickListener { learnThroughPlay() }
