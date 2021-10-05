@@ -34,6 +34,7 @@ import com.example.earlylife.SQLite.FeedReaderContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
         //instantiating and setting values for the spinner
         val spinner: Spinner = findViewById(R.id.date_range_spinner)
-        var txt_activityID = findViewById<TextView>(R.id.sensor_data)
+        //var txt_activityID = findViewById<TextView>(R.id.sensor_data)
         //adding the options from the resource xml file
         ArrayAdapter.createFromResource(
             this,
@@ -74,7 +75,10 @@ class MainActivity : AppCompatActivity() {
             QuiltActivity(2,"Match",13,getTimeOnTask("match").toFloat())
         )
         val cardTitleText = findViewById<TextView>(R.id.card_title)
-
+        val mostUsed = findViewById<TextView>(R.id.favorite_activity)
+        mostUsed.setText(getMostUsed())
+        val mostCorrect = findViewById<TextView>(R.id.most_correct_value)
+        mostCorrect.setText(getMostCorrect())
         //db access test
         val spinnerListener = DateRangeSpinnerActivity(this)
         spinner.onItemSelectedListener = spinnerListener
@@ -96,6 +100,14 @@ class MainActivity : AppCompatActivity() {
         //lineChartButton.setOnClickListener { changeChartType(LineChartFragment()) }
         setDefaultChart(activityData)
 
+        val favActivty = findViewById<View>(R.id.shapes_insights).setOnClickListener{
+            startIndividualActivityReport(getMostUsed())
+        }
+
+        val btnMostCorrect = findViewById<View>(R.id.numbers_insights).setOnClickListener {
+            startIndividualActivityReport(getMostCorrect())
+        }
+
 
 
         /*Using retrofit to get sensor data */
@@ -108,18 +120,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun startIndividualActivityReport(activityName : String){
+        val intent = Intent(applicationContext,ActivityReport::class.java)
+        intent.putExtra("ActivityName",activityName)
+        startActivity(intent)
+    }
+
     private fun onFailure(t: Throwable) {
         Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
-        var txt_activityID = findViewById<TextView>(R.id.sensor_data)
-        txt_activityID.text = t.toString()
+        //var txt_activityID = findViewById<TextView>(R.id.sensor_data)
+        //txt_activityID.text = t.toString()
         Log.d("ERROR",t.toString())
 
     }
 
     private fun onResponse(response: Quilt) {
         Log.d("Response",response.toString())
-        var txt_activityID = findViewById<TextView>(R.id.sensor_data)
-        txt_activityID.text = response.LearnShapes.activityID
+        //var txt_activityID = findViewById<TextView>(R.id.sensor_data)
+        //txt_activityID.text = response.LearnShapes.activityID
 
         //saving to database
         val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
@@ -193,7 +211,7 @@ class MainActivity : AppCompatActivity() {
         }
         cursor.close()
         Log.e("Database", itemIds.toString())
-        txt_activityID.setText(itemIds.toString())
+        //txt_activityID.setText(itemIds.toString())
     }
 
     /**
@@ -235,6 +253,105 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return timeOnTask
+    }
+
+    /**
+     * Function takes in an activity name and returns the time on task for the activity
+     */
+    fun getMostUsed(): String{
+        var activities = arrayListOf<String>("shapes","numbers","match","loves")
+        var timeOnTask = 0
+        val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
+        val dbr = dbHelper.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
+
+        var currentBest = activities[0]
+        var currentBiggest = -1
+        for(a in activities) {
+            var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME} = ?"
+            val cursor = dbr.query(
+                FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                arrayOf(a),          // The values for the WHERE clause
+                null,                // don't group the rows
+                null,                   // don't filter by row groups
+                null               // The sort order
+            )
+
+            val shapesStats = mutableListOf<Int>()
+            with(cursor) {
+                while (moveToNext()) {
+                    val itemId =
+                        getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK))
+                    shapesStats.add(itemId)
+                }
+            }
+            cursor.close()
+            Log.d("Debug", shapesStats.toString())
+            for (a in shapesStats) {
+                if (a != null) {
+                    timeOnTask += a //Integer.getInteger(a)
+                }
+            }
+            if (timeOnTask > currentBiggest){
+                currentBest = a
+                currentBiggest = timeOnTask
+            }
+        }
+        return currentBest
+    }
+
+    fun getMostCorrect(): String{
+        var activities = arrayListOf<String>("shapes","numbers","match","loves")
+        var timeOnTask = 0
+        val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
+        val dbr = dbHelper.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
+
+        var currentBest = activities[0]
+        var currentBiggest = -1
+        for(a in activities) {
+            var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME} = ?"
+            val cursor = dbr.query(
+                FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                arrayOf(a),          // The values for the WHERE clause
+                null,                // don't group the rows
+                null,                   // don't filter by row groups
+                null               // The sort order
+            )
+
+            val shapesStats = mutableListOf<Int>()
+            with(cursor) {
+                while (moveToNext()) {
+                    val itemId =
+                        getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT))
+                    shapesStats.add(itemId)
+                }
+            }
+            cursor.close()
+            Log.d("Debug", shapesStats.toString())
+            for (a in shapesStats) {
+                if (a != null) {
+                    timeOnTask += a //Integer.getInteger(a)
+                }
+            }
+            if (timeOnTask > currentBiggest){
+                currentBest = a
+                currentBiggest = timeOnTask
+            }
+        }
+        return currentBest
     }
 
     /**

@@ -26,9 +26,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/view"
-            android:layout_width="370dp"
+            android:layout_width="350dp"
             android:layout_height="500dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             app:cardCornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +97,7 @@
                     android:layout_height="38dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="19dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginBottom="56dp"
                     android:text="All"
                     app:layout_constraintVertical_bias="0.302" />
@@ -106,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="22dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginBottom="56dp"
                     android:layout_toEndOf="@+id/line_fragment_button"
                     android:text="Shapes"
@@ -119,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginBottom="57dp"
                     android:layout_toEndOf="@+id/bar_fragment_button"
                     android:text="Love"
@@ -145,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginBottom="56dp"
                     android:layout_toEndOf="@+id/love_fragment_btn"
                     android:text="Match Shapes"
@@ -183,14 +185,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/shapes_insights"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
                 app:cardCornerRadius="4dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="7dp"
                 android:layout_marginTop="-1dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="7dp"
                 android:layout_toStartOf="@+id/numbers_insights"
                 android:onClick="startActivityReport"
                 android:text="Shapes">
@@ -198,16 +200,17 @@
                 <TextView
                     android:layout_width="195dp"
                     android:layout_height="30dp"
-                    android:text="Favorite Shape"
+                    android:text="Favorite Activity"
                     android:layout_marginLeft="10dp"
                     android:textSize="17dp"></TextView>
 
                 <TextView
+                    android:id="@+id/favorite_activity"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="30dp"
                     android:text="Square"
-                    android:textSize="50dp"
+                    android:textSize="40dp"
                     android:textColor="#000000"
                     android:layout_marginLeft="10dp"></TextView>
                 <TextView
@@ -221,30 +224,30 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/numbers_insights"
-                android:layout_width="150dp"
-                android:layout_height="140dp"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
                 app:cardCornerRadius="4dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="-2dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="7dp"
                 android:onClick="startActivityReport"
                 android:text="Shapes">
                 <TextView
                     android:layout_width="195dp"
                     android:layout_height="30dp"
-                    android:text="Favorite Number"
+                    android:text="Most Correct"
                     android:layout_marginLeft="10dp"
                     android:textSize="17dp"></TextView>
                 <TextView
+                    android:id="@+id/most_correct_value"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="30dp"
                     android:text="7"
-                    android:textSize="50dp"
+                    android:textSize="40dp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center_horizontal"></TextView>
+                    android:layout_marginLeft="10dp"></TextView>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -252,18 +255,6 @@
                     android:layout_marginLeft="10dp"
                     android:text="Click for more..."
                     android:textColor="@color/colorPrimary"></TextView>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="41dp">
-                <TextView
-                    android:id="@+id/sensor_data"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="15dp"></TextView>
             </androidx.cardview.widget.CardView>
 
         </RelativeLayout>

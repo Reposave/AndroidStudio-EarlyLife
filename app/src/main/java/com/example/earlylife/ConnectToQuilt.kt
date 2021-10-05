@@ -160,7 +160,6 @@ class ConnectToQuilt : AppCompatActivity() {
 
     private fun onFailure(t: Throwable) {
         Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
-        var txt_activityID = findViewById<TextView>(R.id.sensor_data)
         Log.d("ERROR",t.toString())
 
     }
