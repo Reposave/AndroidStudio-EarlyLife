@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ConnectToQuilt" />
+
+        <activity android:name=".ConnectToQuilt"/>
         <activity android:name=".EcdResources" />
         <activity android:name=".HomePage">
             <intent-filter>

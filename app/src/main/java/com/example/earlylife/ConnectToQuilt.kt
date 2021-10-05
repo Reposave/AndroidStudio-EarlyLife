@@ -21,6 +21,7 @@ import android.os.Handler
 import android.provider.BaseColumns
 import android.util.Log
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import com.example.earlylife.Models.Quilt
@@ -29,6 +30,8 @@ import com.example.earlylife.SQLite.FeedReaderContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import com.bumptech.glide.Glide
+
 
 @Suppress("DEPRECATION")
 
@@ -45,6 +48,8 @@ class ConnectToQuilt : AppCompatActivity() {
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
         var ssid = "SmartQuilt"
         var key = "CID3208till"
+        title = "Synchronize Quilt"
+
 
         // calling the action bar
         val actionBar = supportActionBar
@@ -80,19 +85,25 @@ class ConnectToQuilt : AppCompatActivity() {
             wifiManager.enableNetwork(netId, true)
             wifiManager.reconnect()
 
+            val imageView: ImageView = findViewById(R.id.imageView)
+            Glide.with(this).load(R.drawable.baby).into(imageView)
+
+
             //Find a way to create a delay before running this next section of code.
             instructText.textView2.text = getString(R.string.instructions6)
-
+            
             Handler().postDelayed({
+                Glide.with(this).clear(imageView)
                 if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
                     val wifiInfo = wifiManager.connectionInfo
                     if (wifiInfo.networkId == -1) {
                         //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
                         instructText.textView2.text = getString(R.string.instructions3)
                         // Not connected to an access point
+
                     } else {
                         tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
-                        Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
                         //Add download code.
                         DownloadData()
                         instructText.textView2.text = getString(R.string.instructions5)
@@ -102,9 +113,12 @@ class ConnectToQuilt : AppCompatActivity() {
                         startActivity(intent)
                     }
                     // Connected to an access point
+
                 } else {
+                    Glide.with(this).clear(imageView)
                     instructText.textView2.text = getString(R.string.instructions4)
                     // Wi-Fi adapter is OFF
+
                 }
             }, 4000)
 
@@ -113,6 +127,7 @@ class ConnectToQuilt : AppCompatActivity() {
         }
 
     }
+
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
         when (item.getItemId()) {
             android.R.id.home -> {
