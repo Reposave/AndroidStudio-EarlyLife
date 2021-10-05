@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
         var tool_bar = findViewById<View>(R.id.toolbar)
-        
+
         // calling the action bar
         val actionBar = supportActionBar
 

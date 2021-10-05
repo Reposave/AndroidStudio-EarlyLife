@@ -23,6 +23,25 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="54dp"
+            android:layout_height="49dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:onClick="showGif"
+            android:text="SHOW GIF"
+            android:textAlignment="center" />
+    </RelativeLayout>
+
     <Button
         android:id="@+id/btn_WifiConnect"
         android:layout_width="wrap_content"

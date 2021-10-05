@@ -21,6 +21,7 @@ import android.os.Handler
 import android.provider.BaseColumns
 import android.util.Log
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import com.example.earlylife.Models.Quilt
@@ -29,6 +30,8 @@ import com.example.earlylife.SQLite.FeedReaderContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import com.bumptech.glide.Glide
+
 
 @Suppress("DEPRECATION")
 
@@ -45,6 +48,9 @@ class ConnectToQuilt : AppCompatActivity() {
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
         var ssid = "SmartQuilt"
         var key = "CID3208till"
+        title = "Synchronize Quilt"
+
+
 
         // calling the action bar
         val actionBar = supportActionBar
@@ -82,7 +88,7 @@ class ConnectToQuilt : AppCompatActivity() {
 
             //Find a way to create a delay before running this next section of code.
             instructText.textView2.text = getString(R.string.instructions6)
-
+            
             Handler().postDelayed({
                 if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
                     val wifiInfo = wifiManager.connectionInfo
@@ -112,6 +118,10 @@ class ConnectToQuilt : AppCompatActivity() {
 
         }
 
+    }
+    fun showGif(view: View) {
+        val imageView: ImageView = findViewById(R.id.imageView)
+        Glide.with(this).load(R.drawable.baby).into(imageView)
     }
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
         when (item.getItemId()) {

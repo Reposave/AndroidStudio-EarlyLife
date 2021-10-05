@@ -19,6 +19,8 @@ class EcdResources : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
+
+        //Toolbars may break this screen due to linear Layout, fix after merge.
         var tool_bar = findViewById<View>(R.id.toolbar)
 
         // calling the action bar
