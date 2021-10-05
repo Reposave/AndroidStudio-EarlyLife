@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Ecd_Resources">
+    tools:context=".EcdResources">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/learnCard"
