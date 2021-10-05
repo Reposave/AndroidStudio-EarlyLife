@@ -21,8 +21,6 @@ class EcdResources : AppCompatActivity() {
 
         // Fonts
         setFonts()
-
-
         // Learn through Play card clicked
         val cardView = findViewById<CardView>(R.id.learnCard)
         cardView.setOnClickListener { learnThroughPlay() }
