@@ -20,19 +20,8 @@ class EcdResources : AppCompatActivity() {
         setContentView(R.layout.activity_ecd__resources)
 
         // Fonts
-        val heading1 = findViewById<TextView>(R.id.headingText)
-        val heading2 = findViewById<TextView>(R.id.headingTextNCF)
-        val heading3 = findViewById<TextView>(R.id.headingTextLG)
-        val heading4 = findViewById<TextView>(R.id.headingTextUnicef)
-        val font: Typeface = Typeface.createFromAsset(assets, "Nexa Bold.otf")
-        heading1.typeface = font
-        heading2.typeface = font
-        heading3.typeface = font
-        heading4.typeface = font
+        setFonts()
 
-        // Transparency of images
-       // val learnImg = findViewById<ImageView>(R.id.limg);
-       // learnImg.setAlpha(127)
 
         // Learn through Play card clicked
         val cardView = findViewById<CardView>(R.id.learnCard)
@@ -90,5 +79,31 @@ class EcdResources : AppCompatActivity() {
         learningGuidelinesCardGone.visibility = View.GONE
         val ncfCardGone = findViewById<CardView>(R.id.ncfCard)
         ncfCardGone.visibility = View.GONE
+    }
+
+    private fun setFonts(){
+        /** This function sets all the fonts for the ECDResources page */
+        val fontBold: Typeface = Typeface.createFromAsset(assets, "Nexa Bold.otf")
+        val fontLight: Typeface = Typeface.createFromAsset(assets, "Nexa Light.otf")
+
+        val heading1 = findViewById<TextView>(R.id.headingText)
+        val heading2 = findViewById<TextView>(R.id.headingTextNCF)
+        val heading3 = findViewById<TextView>(R.id.headingTextLG)
+        val heading4 = findViewById<TextView>(R.id.headingTextUnicef)
+        val sec1 = findViewById<TextView>(R.id.secText1)
+        val sec2 = findViewById<TextView>(R.id.secText2)
+        val sec3 = findViewById<TextView>(R.id.secText3)
+        val sec4 = findViewById<TextView>(R.id.secText4)
+
+        // apply font
+        heading1.typeface = fontBold
+        heading2.typeface = fontBold
+        heading3.typeface = fontBold
+        heading4.typeface = fontBold
+        sec1.typeface = fontLight
+        sec2.typeface = fontLight
+        sec3.typeface = fontLight
+        sec4.typeface = fontLight
+
     }
 }
