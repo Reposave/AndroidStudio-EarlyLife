@@ -1,12 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.pdfview:pdfview-android:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b48a625b25c0db0e125372ab24a60eed/jetified-pdfview-android-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b48a625b25c0db0e125372ab24a60eed/jetified-pdfview-android-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b48a625b25c0db0e125372ab24a60eed/jetified-pdfview-android-1.0.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8829c0b5dcad4861e80889ed6e116d1a/jetified-pdfview-android-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8829c0b5dcad4861e80889ed6e116d1a/jetified-pdfview-android-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8829c0b5dcad4861e80889ed6e116d1a/jetified-pdfview-android-1.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ad45394a6f93013929bb1e6133e28db/jetified-pdfview-android-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ad45394a6f93013929bb1e6133e28db/jetified-pdfview-android-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ad45394a6f93013929bb1e6133e28db/jetified-pdfview-android-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

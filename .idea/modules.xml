@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Early Life.Early_Life.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Early Life.Early_Life.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Early_Life.iml" filepath="$PROJECT_DIR$/.idea/modules/Early_Life.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Early_Life.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Early_Life.app.iml" />
     </modules>
