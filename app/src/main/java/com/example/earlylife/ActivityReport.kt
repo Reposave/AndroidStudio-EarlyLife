@@ -1,7 +1,11 @@
 package com.example.earlylife
 
+import android.content.Intent
+import android.graphics.Color
 import android.graphics.Point
+import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.os.Handler
 
 import android.view.MenuItem
 import android.view.View
@@ -18,14 +22,18 @@ import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.example.earlylife.SQLite.FeedReaderContract
+import kotlinx.android.synthetic.main.activity_connect_to_quilt.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
+@Suppress("DEPRECATION")
 
 class ActivityReport : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
+
+        var tool_bar = findViewById<View>(R.id.toolbar)
         var activityName : String? = null
         intent.extras?.getString("ActivityName")?.let { Log.d("debug", it) }
         var extras = intent.extras
@@ -39,10 +47,53 @@ class ActivityReport : AppCompatActivity() {
         // showing the back button in action bar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
 
+<<<<<<< HEAD
         var correctValue = findViewById<TextView>(R.id.correct_value)
         var hoursValue = findViewById<TextView>(R.id.hours_spent_value)
         correctValue?.setText(activityName?.let { getCorrect(it).toString() })
         hoursValue?.setText(activityName?.let{ getTimeOnTask(it).toString() })
+=======
+        val wifiManager = getSystemService(WIFI_SERVICE) as WifiManager
+
+        //Perform a check if Wifi is connected to SmartQuilt
+        Handler().postDelayed({
+            if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
+                val wifiInfo = wifiManager.connectionInfo
+                if (wifiInfo.networkId == -1) {
+                    //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
+                    // Not connected to an access point
+                } else {
+                    tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
+                    //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
+                }
+                // Connected to an access point
+            } else {
+                // Wi-Fi adapter is OFF
+            }
+        }, 4000)
+
+        var anyChartView: AnyChartView = findViewById(R.id.any_chart_view)
+        APIlib.getInstance().setActiveAnyChartView(anyChartView)
+
+        //Adding a progress meter
+        val successMeter = AnyChart.pie()
+        successMeter.innerRadius("80%")
+
+        var data = ArrayList<DataEntry>()
+        data.add(ValueDataEntry("Correct", 80))
+        data.add(ValueDataEntry("Incorrect", 20))
+        successMeter.data(data)
+
+
+        //Adding the chart to the UI
+        anyChartView.setChart(successMeter)
+
+
+        //adding the report details width to the UI
+        var activityDetails = findViewById<View>(R.id.activity_details)
+        //activityDetails.layoutParams.width = s_width/2
+
+>>>>>>> 840dc2b55449c63ffde590f16e724fb08396bc89
         var anyChartLineView: AnyChartView = findViewById(R.id.any_chart_line_view)
         APIlib.getInstance().setActiveAnyChartView(anyChartLineView)
         //adding the line graph

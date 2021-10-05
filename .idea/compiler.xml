@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+<<<<<<< HEAD
     <bytecodeTargetLevel>
       <module name="Early Life.Early_Life.app" target="11" />
     </bytecodeTargetLevel>
+=======
+    <bytecodeTargetLevel target="11" />
+>>>>>>> 840dc2b55449c63ffde590f16e724fb08396bc89
   </component>
 </project>

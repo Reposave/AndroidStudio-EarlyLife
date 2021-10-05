@@ -6,7 +6,11 @@
     <string name="find_network">Find Network</string>
     <string name="connect_to_quilt">Connect to quilt</string>
     <string name="ecd_resources">ECD Resources</string>
-
+    <string name="how_to">How to use activity</string>
+    <string name="activity_guidelines">1. First pick a shape of interest\n\n
+    2. Press corresponding shape on quilt\n\n
+    3. Pick next shape\n\n
+    4. Repeat until done :)</string>
 
     <string name="instructions">1. Press the "Find network button."\n\n
                                     A search for the network SmartQuilt shall begin \n\n
@@ -23,6 +27,17 @@
     <string name="r2">UNICEF Education Kit Handbook</string>
     <string name="r3">Learning Guidelines</string>
     <string name="r4">NCF</string>
+
+    <string name="l2p">Learn through play description here</string>
+
+    <string name="secondary_text">All the tips and tricks to help you need to help your baby learn through play!</string>
+    <string name="secondary_textNCF">National Curriculum Framework for children from birth to four developed by the Department of Basic Education</string>
+    <string name="secondary_textLG">Oklahoma\'s Learning Guidelines for infants, toddlers and twos</string>
+    <string name="secondary_textUNICEF">Resources provided by the United Nations International Children\'s Emergency Fund</string>
+
+
+
+    <string name="open">Open</string>
 
 
 

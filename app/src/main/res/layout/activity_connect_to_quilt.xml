@@ -23,6 +23,25 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <RelativeLayout
+        android:layout_width="297dp"
+        android:layout_height="394dp"
+        android:layout_marginStart="37dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="179dp"
+            android:layout_height="168dp" />
+    </RelativeLayout>
+
     <Button
         android:id="@+id/btn_WifiConnect"
         android:layout_width="wrap_content"
@@ -51,8 +70,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="303dp"
-        android:layout_height="215dp"
+        android:layout_width="320dp"
+        android:layout_height="262dp"
         android:layout_marginTop="44dp"
         android:text="@string/instructions"
         android:textAlignment="center"

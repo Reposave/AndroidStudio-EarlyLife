@@ -1,9 +1,20 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.AnyChart:AnyChart-Android:1.1.2@aar">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2e18b594566b8a18f015d28ffc5e868/jetified-AnyChart-Android-1.1.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2e18b594566b8a18f015d28ffc5e868/jetified-AnyChart-Android-1.1.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2e18b594566b8a18f015d28ffc5e868/jetified-AnyChart-Android-1.1.2/AndroidManifest.xml" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8afbfb912c761fada8ca225b61e54a8c/jetified-AnyChart-Android-1.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8afbfb912c761fada8ca225b61e54a8c/jetified-AnyChart-Android-1.1.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fc43d0f0b56f2cb6b545270152c9269e/jetified-AnyChart-Android-1.1.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fc43d0f0b56f2cb6b545270152c9269e/jetified-AnyChart-Android-1.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fc43d0f0b56f2cb6b545270152c9269e/jetified-AnyChart-Android-1.1.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7b86b2f0441dbad173da923df043cd3d/jetified-AnyChart-Android-1.1.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7b86b2f0441dbad173da923df043cd3d/jetified-AnyChart-Android-1.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7b86b2f0441dbad173da923df043cd3d/jetified-AnyChart-Android-1.1.2/AndroidManifest.xml" />
+>>>>>>> 840dc2b55449c63ffde590f16e724fb08396bc89
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.AnyChart/AnyChart-Android/1.1.2/e6e0e75393f18a35fa3d6d8ee5260185e314eed9/AnyChart-Android-1.1.2-javadoc.jar!/" />
