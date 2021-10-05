@@ -24,6 +24,11 @@
     <string name="r3">Learning Guidelines</string>
     <string name="r4">NCF</string>
 
+    <string name="l2p">Learn through play description here</string>
+    <string name="title">Learn through play</string>
+    <string name="secondary_text">Some other stuff</string>
+    <string name="open">Open</string>
+
 
 
     <string-array name="date_range_array">

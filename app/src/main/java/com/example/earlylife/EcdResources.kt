@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.pdfview.PDFView
 import android.graphics.Typeface
+import android.widget.ImageView
 
 import android.widget.TextView
 
@@ -22,16 +23,22 @@ class EcdResources : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
-        val heading = findViewById<TextView>(R.id.textView4)
+
+        // Fonts
+        val heading = findViewById<TextView>(R.id.headingText)
         val font: Typeface = Typeface.createFromAsset(assets, "Nexa_Bold.otf")
         /**val textView = findViewById<View>(R.id.textView) as TextView
         val font = Typeface.createFromAsset(assets, "fonts/FontName.ttf")*/
         heading.setTypeface(font)
 
-        // Learn through Play card clicked
-        val cardView = findViewById<CardView>(R.id.card_view)
-        cardView.setOnClickListener { learnThroughPlay() }
+        // Transparency of images
+       // val learnImg = findViewById<ImageView>(R.id.limg);
+       // learnImg.setAlpha(127)
 
+        // Learn through Play card clicked
+        val cardView = findViewById<CardView>(R.id.learnCard)
+        cardView.setOnClickListener { learnThroughPlay() }
+/**
         // Unicef card clicked
         val cardView1 = findViewById<CardView>(R.id.card_view1)
         cardView1.setOnClickListener { unicef() }
@@ -42,7 +49,7 @@ class EcdResources : AppCompatActivity() {
 
         // NCF card clicked
         val cardView5 = findViewById<CardView>(R.id.card_view5)
-        cardView5.setOnClickListener { NCF() }
+        cardView5.setOnClickListener { NCF() }*/
 
     }
 
@@ -50,11 +57,11 @@ class EcdResources : AppCompatActivity() {
 
     private fun learnThroughPlay() {
         // Display Learn Through Play resource when selected
-        val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
+        val mPDFView = findViewById<PDFView>(R.id.earlyPdfView)
         mPDFView.fromAsset("earlychildhood_everyday_i_learn_through_play.pdf").show()
-        hide()
+       // hide()
     }
-
+/**
     private fun unicef(){
         // Display UNICEF pdf resource when selected
         val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
@@ -84,5 +91,5 @@ class EcdResources : AppCompatActivity() {
         learningGuidelinesCard.visibility = View.GONE
         val ncfCard = findViewById<CardView>(R.id.card_view5)
         ncfCard.visibility = View.GONE
-    }
+    }*/
 }

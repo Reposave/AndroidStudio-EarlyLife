@@ -11,50 +11,90 @@
 
     tools:context=".Ecd_Resources">
 
-
-
-
-
-    <RelativeLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/learnCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
-        <com.pdfview.PDFView
-            android:id="@+id/activityMainPdfView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="188dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="86dp"
-            android:layout_marginBottom="5dp"
-            android:text="@string/ecd_resources"
-            android:textColor="@android:color/holo_orange_dark"
-            android:textSize="24sp"
-            />
+            android:layout_height="246dp"
+            android:orientation="vertical">
+
+            <!-- Media -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="114dp"
+                android:contentDescription="@string/l2p"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/l2p" />
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <androidx.cardview.widget.CardView
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:id="@+id/headingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/secondary_text"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+                <com.pdfview.PDFView
+                    android:id="@+id/earlyPdfView"
+                    android:layout_width="48dp"
+                    android:layout_height="51dp" />
+
+            </LinearLayout>
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
+       <!-- <androidx.cardview.widget.CardView
             android:id="@+id/card_view1"
-            android:layout_width="208dp"
-            android:layout_height="64dp"
+            android:layout_width="382dp"
+            android:layout_height="155dp"
             android:layout_below="@+id/textView4"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginStart="95dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="76dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="47dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginBottom="444dp"
-            card_view:cardCornerRadius="16dp">
+            card_view:cardCornerRadius="16dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <ImageView
+                android:id="@+id/limg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:alpha=".64"
+                android:scaleType="centerCrop"
+                android:src="@drawable/l2p" />
 
             <TextView
                 android:id="@+id/textView1"
@@ -65,19 +105,20 @@
                 android:textColor="@android:color/holo_orange_dark"
                 android:textSize="18sp" />
 
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
-            android:layout_width="208dp"
-            android:layout_height="64dp"
+            android:layout_width="382dp"
+            android:layout_height="59dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginStart="93dp"
-            android:layout_marginEnd="78dp"
-            android:layout_marginBottom="339dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="341dp"
             card_view:cardCornerRadius="16dp">
 
             <TextView
@@ -93,38 +134,31 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view3"
-            android:layout_width="208dp"
-            android:layout_height="64dp"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginStart="96dp"
-            android:layout_marginEnd="75dp"
-            android:layout_marginBottom="238dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="-8dp"
+            android:layout_marginBottom="104dp"
             card_view:cardCornerRadius="16dp">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="188dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="@string/r3"
-                android:textColor="@android:color/holo_orange_dark"
-                android:textSize="16sp" />
 
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view5"
-            android:layout_width="212dp"
-            android:layout_height="62dp"
+            android:layout_width="204dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginEnd="72dp"
-            android:layout_marginBottom="149dp"
+            android:layout_marginStart="199dp"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="22dp"
             card_view:cardCornerRadius="16dp">
 
             <TextView
@@ -138,7 +172,38 @@
 
         </androidx.cardview.widget.CardView>
 
-    </RelativeLayout>
+        <com.pdfview.PDFView
+            android:id="@+id/activityMainPdfView"
+            android:layout_width="489dp"
+            android:layout_height="51dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/card"
+            android:layout_marginEnd="197dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/r3"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="16sp" />
 
 
-</LinearLayout>
+
+
+
+<TextView
+            android:id="@+id/textView4"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="86dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/ecd_resources"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="24sp" />
+    -->
