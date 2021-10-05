@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".ConnectToQuilt">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#FFFFFF"
+        tools:ignore="MissingConstraints">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="28dp">
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <Button
         android:id="@+id/btn_WifiConnect"
         android:layout_width="wrap_content"

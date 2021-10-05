@@ -4,13 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Samoei/OneDrive/Desktop/EarlyLife/app/src/main/res/layout/activity_ecd__resources.xml" value="0.1678832116788321" />
+<<<<<<< HEAD
         <entry key="..\:/Users/Samoei/OneDrive/Desktop/EarlyLife/app/src/main/res/layout/activity_pdf_view.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/Samoei/OneDrive/Desktop/EarlyLife/app/src/main/res/layout/activity_web_view.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_connect_to_quilt.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_connect_to_quilt.xml" value="0.4" />
+        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_ecd__resources.xml" value="0.264" />
+=======
+        <entry key="..\:/Users/Samoei/OneDrive/Desktop/EarlyLife/app/src/main/res/layout/activity_main.xml" value="0.1171875" />
+        <entry key="..\:/Users/Samoei/OneDrive/Desktop/EarlyLife/app/src/main/res/layout/activity_pdf_view.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/Samoei/OneDrive/Desktop/EarlyLife/app/src/main/res/layout/activity_report.xml" value="0.1" />
+        <entry key="..\:/Users/Samoei/OneDrive/Desktop/EarlyLife/app/src/main/res/layout/activity_web_view.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Samoei/OneDrive/Desktop/EarlyLife/app/src/main/res/xml/provider_paths.xml" value="0.1" />
+>>>>>>> ecd_resources
         <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_main_backup.xml" value="0.16" />
         <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/activity_report.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/fragment_add.xml" value="0.21458333333333332" />
+        <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/fragment_line_chart.xml" value="0.1" />
         <entry key="..\:/Users/ardod/Desktop/Course/CSC3003S/EarlyLife/app/src/main/res/layout/fragment_list.xml" value="0.264" />
       </map>
     </option>
