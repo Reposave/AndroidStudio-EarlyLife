@@ -66,15 +66,16 @@ class LineChartFragment : Fragment() {
 
         var activity = Activitydata.get(id)
 
-        var anyChartView = (getView()?.findViewById(R.id.any_chart_view)) as AnyChartView
-        APIlib.getInstance().setActiveAnyChartView(anyChartView)
-        var txtView = getView()?.findViewById<TextView>(R.id.info_text)
+        //var anyChartView = (getView()?.findViewById(R.id.any_chart_view)) as AnyChartView
+        //APIlib.getInstance().setActiveAnyChartView(anyChartView)
+        //var txtView = getView()?.findViewById<TextView>(R.id.info_text)
         var btnStartActivity = getView()?.findViewById<Button>(R.id.btn_individual_activity)
         if (btnStartActivity != null) {
             btnStartActivity.setOnClickListener{ startIndividualActivityReport() }
         }
 
         //Adding a progress meter
+        /*
         val successMeter = AnyChart.pie()
         successMeter.innerRadius("60%")
         val correct = activityName?.let { getCorrect(it, txtView) }
@@ -82,9 +83,11 @@ class LineChartFragment : Fragment() {
         data.add(ValueDataEntry("Correct",correct))
         data.add(ValueDataEntry("Incorrect", 500 - correct!!))
         successMeter.data(data)
+        *
+         */
 
         //Adding the chart to the UI
-        anyChartView.setChart(successMeter)
+        //anyChartView.setChart(successMeter)
     }
 
     companion object {
