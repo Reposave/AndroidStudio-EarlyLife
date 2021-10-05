@@ -51,7 +51,6 @@ class ConnectToQuilt : AppCompatActivity() {
         title = "Synchronize Quilt"
 
 
-
         // calling the action bar
         val actionBar = supportActionBar
 
@@ -86,16 +85,22 @@ class ConnectToQuilt : AppCompatActivity() {
             wifiManager.enableNetwork(netId, true)
             wifiManager.reconnect()
 
+            val imageView: ImageView = findViewById(R.id.imageView)
+            Glide.with(this).load(R.drawable.baby).into(imageView)
+
+
             //Find a way to create a delay before running this next section of code.
             instructText.textView2.text = getString(R.string.instructions6)
             
             Handler().postDelayed({
+                Glide.with(this).clear(imageView)
                 if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
                     val wifiInfo = wifiManager.connectionInfo
                     if (wifiInfo.networkId == -1) {
                         //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
                         instructText.textView2.text = getString(R.string.instructions3)
                         // Not connected to an access point
+
                     } else {
                         tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
                         //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
@@ -108,9 +113,12 @@ class ConnectToQuilt : AppCompatActivity() {
                         startActivity(intent)
                     }
                     // Connected to an access point
+
                 } else {
+                    Glide.with(this).clear(imageView)
                     instructText.textView2.text = getString(R.string.instructions4)
                     // Wi-Fi adapter is OFF
+
                 }
             }, 4000)
 
@@ -119,10 +127,7 @@ class ConnectToQuilt : AppCompatActivity() {
         }
 
     }
-    fun showGif(view: View) {
-        val imageView: ImageView = findViewById(R.id.imageView)
-        Glide.with(this).load(R.drawable.baby).into(imageView)
-    }
+
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
         when (item.getItemId()) {
             android.R.id.home -> {
