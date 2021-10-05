@@ -5,6 +5,15 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.pdfview.PDFView
+import android.graphics.Typeface
+
+import android.widget.TextView
+
+
+
+
+
+
 
 
 class EcdResources : AppCompatActivity() {
@@ -13,6 +22,11 @@ class EcdResources : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
+        val heading = findViewById<TextView>(R.id.textView4)
+        val font: Typeface = Typeface.createFromAsset(assets, "Nexa_Bold.otf")
+        /**val textView = findViewById<View>(R.id.textView) as TextView
+        val font = Typeface.createFromAsset(assets, "fonts/FontName.ttf")*/
+        heading.setTypeface(font)
 
         // Learn through Play card clicked
         val cardView = findViewById<CardView>(R.id.card_view)

@@ -36,7 +36,9 @@
             android:layout_marginBottom="5dp"
             android:text="@string/ecd_resources"
             android:textColor="@android:color/holo_orange_dark"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            />
+
 
 
         <androidx.cardview.widget.CardView
