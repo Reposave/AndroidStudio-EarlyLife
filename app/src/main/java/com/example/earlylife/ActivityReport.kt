@@ -2,10 +2,15 @@ package com.example.earlylife
 
 import android.graphics.Point
 import android.os.Bundle
+
+import android.view.MenuItem
+import android.view.View
+import androidx.annotation.NonNull
+
 import android.provider.BaseColumns
 import android.util.Log
-import android.view.View
 import android.widget.TextView
+
 import androidx.appcompat.app.AppCompatActivity
 import com.anychart.APIlib
 import com.anychart.AnyChart
@@ -31,6 +36,11 @@ class ActivityReport : AppCompatActivity() {
         var details = findViewById<TextView>(R.id.activity_details_label)
         details.setText("The activity is "+activityName)
 
+        // calling the action bar
+        val actionBar = supportActionBar
+
+        // showing the back button in action bar
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
 
         var anyChartView: AnyChartView = findViewById(R.id.any_chart_view)
         APIlib.getInstance().setActiveAnyChartView(anyChartView)
@@ -74,6 +84,17 @@ class ActivityReport : AppCompatActivity() {
 
     }
 
+    override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
     fun getWeeklyActivity(activityName: String): ArrayList<DataEntry>{
         val lineData = ArrayList<DataEntry>()
         val dbHelper =  FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
@@ -114,5 +135,6 @@ class ActivityReport : AppCompatActivity() {
             lineData.add(ValueDataEntry(date[i], time[i]))
         }
         return lineData
+
     }
 }
