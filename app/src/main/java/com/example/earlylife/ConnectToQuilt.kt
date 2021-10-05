@@ -92,7 +92,7 @@ class ConnectToQuilt : AppCompatActivity() {
                         // Not connected to an access point
                     } else {
                         tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
-                        Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
                         //Add download code.
                         DownloadData()
                         instructText.textView2.text = getString(R.string.instructions5)

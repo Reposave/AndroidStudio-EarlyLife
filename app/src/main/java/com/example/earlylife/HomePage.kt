@@ -7,12 +7,13 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.NonNull
 
+@Suppress("DEPRECATION")
+
 class HomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
-
 
         var btnViewReport = findViewById<View>(R.id.view_report_card)
         var btnEcdResources = findViewById<View>(R.id.view_ecd_resources_btn)

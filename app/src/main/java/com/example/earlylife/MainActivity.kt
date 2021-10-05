@@ -9,8 +9,11 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.provider.BaseColumns
 import android.util.Log
 import android.view.MenuItem
@@ -45,13 +48,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
-
+        var tool_bar = findViewById<View>(R.id.toolbar)
+        
         // calling the action bar
         val actionBar = supportActionBar
 
         // showing the back button in action bar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
+        val wifiManager = getSystemService(WIFI_SERVICE) as WifiManager
 
+        //Perform a check if Wifi is connected to SmartQuilt
+        Handler().postDelayed({
+            if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
+                val wifiInfo = wifiManager.connectionInfo
+                if (wifiInfo.networkId == -1) {
+                    //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
+                    // Not connected to an access point
+                } else {
+                    tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
+                    //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
+                }
+                // Connected to an access point
+            } else {
+                // Wi-Fi adapter is OFF
+            }
+        }, 4000)
         //instantiating and setting values for the spinner
         val spinner: Spinner = findViewById(R.id.date_range_spinner)
         var txt_activityID = findViewById<TextView>(R.id.sensor_data)
