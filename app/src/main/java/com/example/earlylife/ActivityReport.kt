@@ -33,35 +33,12 @@ class ActivityReport : AppCompatActivity() {
             activityName = extras.getString("ActivityName").toString()
         }
 
-        var details = findViewById<TextView>(R.id.activity_details_label)
-        details.setText("The activity is "+activityName)
 
         // calling the action bar
         val actionBar = supportActionBar
 
         // showing the back button in action bar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        var anyChartView: AnyChartView = findViewById(R.id.any_chart_view)
-        APIlib.getInstance().setActiveAnyChartView(anyChartView)
-
-        //Adding a progress meter
-        val successMeter = AnyChart.pie()
-        successMeter.innerRadius("80%")
-
-        var data = ArrayList<DataEntry>()
-        data.add(ValueDataEntry("Correct", 80))
-        data.add(ValueDataEntry("Incorrect", 20))
-        successMeter.data(data)
-
-
-        //Adding the chart to the UI
-        anyChartView.setChart(successMeter)
-
-
-        //adding the report details width to the UI
-        var activityDetails = findViewById<View>(R.id.activity_details)
-        //activityDetails.layoutParams.width = s_width/2
 
         var anyChartLineView: AnyChartView = findViewById(R.id.any_chart_line_view)
         APIlib.getInstance().setActiveAnyChartView(anyChartLineView)

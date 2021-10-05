@@ -36,11 +36,11 @@ import com.example.earlylife.SQLite.FeedReaderContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-<<<<<<< HEAD
+
 import kotlin.collections.ArrayList
-=======
+
 import androidx.appcompat.app.ActionBar;
->>>>>>> 4aaa8338347825f3a6d6e0df4fef4b4185f94ea5
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
                 .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
 
     }
-<<<<<<< HEAD
+
 
     fun startIndividualActivityReport(activityName : String){
         val intent = Intent(applicationContext,ActivityReport::class.java)
@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-=======
+
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
         when (item.getItemId()) {
             android.R.id.home -> {
@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
->>>>>>> 4aaa8338347825f3a6d6e0df4fef4b4185f94ea5
+
     private fun onFailure(t: Throwable) {
         Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
         //var txt_activityID = findViewById<TextView>(R.id.sensor_data)
