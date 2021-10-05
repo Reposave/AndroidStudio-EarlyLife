@@ -26,7 +26,7 @@ class EcdResources : AppCompatActivity() {
 
         // Fonts
         val heading = findViewById<TextView>(R.id.headingText)
-        val font: Typeface = Typeface.createFromAsset(assets, "Nexa_Bold.otf")
+        val font: Typeface = Typeface.createFromAsset(assets, "Nexa Bold.otf")
         /**val textView = findViewById<View>(R.id.textView) as TextView
         val font = Typeface.createFromAsset(assets, "fonts/FontName.ttf")*/
         heading.setTypeface(font)
