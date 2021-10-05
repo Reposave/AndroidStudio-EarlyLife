@@ -9,12 +9,7 @@ import android.graphics.Typeface
 import android.widget.ImageView
 
 import android.widget.TextView
-
-
-
-
-
-
+import com.google.android.material.card.MaterialCardView
 
 
 class EcdResources : AppCompatActivity() {
@@ -25,11 +20,15 @@ class EcdResources : AppCompatActivity() {
         setContentView(R.layout.activity_ecd__resources)
 
         // Fonts
-        val heading = findViewById<TextView>(R.id.headingText)
+        val heading1 = findViewById<TextView>(R.id.headingText)
+        val heading2 = findViewById<TextView>(R.id.headingTextNCF)
+        val heading3 = findViewById<TextView>(R.id.headingTextLG)
+        val heading4 = findViewById<TextView>(R.id.headingTextUnicef)
         val font: Typeface = Typeface.createFromAsset(assets, "Nexa Bold.otf")
-        /**val textView = findViewById<View>(R.id.textView) as TextView
-        val font = Typeface.createFromAsset(assets, "fonts/FontName.ttf")*/
-        heading.setTypeface(font)
+        heading1.typeface = font
+        heading2.typeface = font
+        heading3.typeface = font
+        heading4.typeface = font
 
         // Transparency of images
        // val learnImg = findViewById<ImageView>(R.id.limg);
@@ -38,18 +37,18 @@ class EcdResources : AppCompatActivity() {
         // Learn through Play card clicked
         val cardView = findViewById<CardView>(R.id.learnCard)
         cardView.setOnClickListener { learnThroughPlay() }
-/**
+
         // Unicef card clicked
-        val cardView1 = findViewById<CardView>(R.id.card_view1)
+        val cardView1 = findViewById<CardView>(R.id.UnicefCard)
         cardView1.setOnClickListener { unicef() }
 
         // Learning Guidelines card clicked
-        val cardView3 = findViewById<CardView>(R.id.card_view3)
+        val cardView3 = findViewById<CardView>(R.id.lgCard)
         cardView3.setOnClickListener { learningGuidelines() }
 
         // NCF card clicked
-        val cardView5 = findViewById<CardView>(R.id.card_view5)
-        cardView5.setOnClickListener { NCF() }*/
+        val cardView5 = findViewById<CardView>(R.id.ncfCard)
+        cardView5.setOnClickListener { NCF() }
 
     }
 
@@ -57,11 +56,11 @@ class EcdResources : AppCompatActivity() {
 
     private fun learnThroughPlay() {
         // Display Learn Through Play resource when selected
-        val mPDFView = findViewById<PDFView>(R.id.earlyPdfView)
+        val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
         mPDFView.fromAsset("earlychildhood_everyday_i_learn_through_play.pdf").show()
-       // hide()
+        hide()
     }
-/**
+
     private fun unicef(){
         // Display UNICEF pdf resource when selected
         val mPDFView = findViewById<PDFView>(R.id.activityMainPdfView)
@@ -83,13 +82,13 @@ class EcdResources : AppCompatActivity() {
 
     private fun hide(){
         /** This function hides all the cards while a resource is being viewed*/
-        val unicefCard = findViewById<CardView>(R.id.card_view)
-        unicefCard.visibility = View.GONE
-        val learnThroughPlayCard = findViewById<CardView>(R.id.card_view1)
-        learnThroughPlayCard.visibility = View.GONE
-        val learningGuidelinesCard = findViewById<CardView>(R.id.card_view3)
-        learningGuidelinesCard.visibility = View.GONE
-        val ncfCard = findViewById<CardView>(R.id.card_view5)
-        ncfCard.visibility = View.GONE
-    }*/
+        val unicefCardGone = findViewById<CardView>(R.id.UnicefCard)
+        unicefCardGone.visibility = View.GONE
+        val learnThroughPlayCardGone = findViewById<MaterialCardView>(R.id.learnCard)
+        learnThroughPlayCardGone.visibility = View.GONE
+        val learningGuidelinesCardGone = findViewById<CardView>(R.id.lgCard)
+        learningGuidelinesCardGone.visibility = View.GONE
+        val ncfCardGone = findViewById<CardView>(R.id.ncfCard)
+        ncfCardGone.visibility = View.GONE
+    }
 }
