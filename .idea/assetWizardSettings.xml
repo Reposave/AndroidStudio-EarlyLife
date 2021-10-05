@@ -37,7 +37,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Mukundi's Files\University of Cape Town\Third Year\Second Semester\CSC3003\Capstone Project\icons\2x" />
+                                                <entry key="imagePath" value="C:\Mukundi's Files\University of Cape Town\Third Year\Second Semester\CSC3003\Capstone Project\Docs\images" />
                                                 <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
@@ -71,8 +71,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Mukundi's Files\University of Cape Town\Third Year\Second Semester\CSC3003\Capstone Project\icons\2x" />
-                                      <entry key="outputName" value="ic_home_upload" />
+                                      <entry key="imageAsset" value="C:\Mukundi's Files\University of Cape Town\Third Year\Second Semester\CSC3003\Capstone Project\Docs\images" />
+                                      <entry key="outputName" value="ic_shapes_report" />
                                     </map>
                                   </option>
                                 </PersistentState>
