@@ -19,6 +19,8 @@ class HomePage : AppCompatActivity() {
         var btnEcdResources = findViewById<View>(R.id.view_ecd_resources_btn)
         var btnConnectToQuilt = findViewById<View>(R.id.connect_to_quilt_card)
 
+        title = ""
+
         btnViewReport.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)

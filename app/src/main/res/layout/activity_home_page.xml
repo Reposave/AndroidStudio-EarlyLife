@@ -8,6 +8,7 @@
     android:background="#F5F5F5">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="430dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +71,7 @@
                     android:id="@+id/imageView3"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    app:srcCompat="@drawable/wifiICON"></ImageView>
+                    app:srcCompat="@drawable/wifiicon"></ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -139,7 +140,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
-                    app:srcCompat="@drawable/CloudIcon"></ImageView>
+                    app:srcCompat="@drawable/cloudicon"></ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -155,6 +156,29 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="461dp"
+        android:layout_height="137dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/banner"></ImageView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_horizontal"
+        android:text="Welcome to EarlyLife"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="29dp"></TextView>
     <!--
     <Button
         android:id="@+id/btn_reports"
