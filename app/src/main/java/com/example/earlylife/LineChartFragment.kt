@@ -65,7 +65,10 @@ class LineChartFragment : Fragment() {
         activityName = bundle?.getString("ActivityName")
 
         var activity = Activitydata.get(id)
-
+        var correctValue = (getView()?.findViewById<TextView>(R.id.correct_value))
+        var hoursValue = (getView()?.findViewById<TextView>(R.id.hours_spent_value))
+        correctValue?.setText(activityName?.let { getCorrect(it).toString() })
+        hoursValue?.setText(activityName?.let{ getTimeOnTask(it).toString() })
         //var anyChartView = (getView()?.findViewById(R.id.any_chart_view)) as AnyChartView
         //APIlib.getInstance().setActiveAnyChartView(anyChartView)
         //var txtView = getView()?.findViewById<TextView>(R.id.info_text)
@@ -74,20 +77,6 @@ class LineChartFragment : Fragment() {
             btnStartActivity.setOnClickListener{ startIndividualActivityReport() }
         }
 
-        //Adding a progress meter
-        /*
-        val successMeter = AnyChart.pie()
-        successMeter.innerRadius("60%")
-        val correct = activityName?.let { getCorrect(it, txtView) }
-        val data = ArrayList<DataEntry>()
-        data.add(ValueDataEntry("Correct",correct))
-        data.add(ValueDataEntry("Incorrect", 500 - correct!!))
-        successMeter.data(data)
-        *
-         */
-
-        //Adding the chart to the UI
-        //anyChartView.setChart(successMeter)
     }
 
     companion object {
@@ -116,7 +105,7 @@ class LineChartFragment : Fragment() {
         startActivity(intent)
     }
 
-    fun getCorrect(activityName: String, txtView: TextView?): Int{
+    fun getCorrect(activityName: String): Int{
         var correct = 0
         val dbHelper = context?.let { FeedReaderContract.FeedReaderDbHelper(it) }
         val dbr = dbHelper?.readableDatabase
@@ -154,9 +143,44 @@ class LineChartFragment : Fragment() {
                 correct += a //Integer.getInteger(a)
             }
         }
-        if (txtView != null) {
-            txtView.setText(correct.toString())
-        }
         return correct
+    }
+
+    fun getTimeOnTask(activityName: String): Int{
+        var timeOnTask = 0
+        val dbHelper = context?.let { FeedReaderContract.FeedReaderDbHelper(it) }
+        val dbr = dbHelper?.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DATE)
+
+        var selection = "${FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME} = ?"
+        val cursor = dbr?.query(
+            FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+            projection,             // The array of columns to return (pass null to get all)
+            selection,              // The columns for the WHERE clause
+            arrayOf(activityName),          // The values for the WHERE clause
+            null,                // don't group the rows
+            null,                   // don't filter by row groups
+            null               // The sort order
+        )
+
+        val shapesStats = mutableListOf<Int>()
+        with(cursor) {
+            while (this?.moveToNext() == true) {
+                val itemId = getInt(getColumnIndexOrThrow(com.example.earlylife.SQLite.FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK))
+                shapesStats.add(itemId)
+            }
+        }
+        cursor?.close()
+        Log.d("Debug", shapesStats.toString())
+        for(a in shapesStats){
+            if (a != null) {
+                timeOnTask += a //Integer.getInteger(a)
+            }
+        }
+        return timeOnTask
     }
 }
