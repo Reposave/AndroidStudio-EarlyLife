@@ -401,6 +401,8 @@ class MainActivity : AppCompatActivity() {
         return currentBest
     }
 
+    fun getF
+
     /**
      * Function starts the individual report activity, invoked when button clicked
      */
