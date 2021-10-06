@@ -13,6 +13,8 @@ import androidx.core.app.ActivityCompat
 
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.wifi.SupplicantState
 
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_connect_to_quilt.view.*
@@ -38,18 +40,19 @@ import com.bumptech.glide.Glide
 class ConnectToQuilt : AppCompatActivity() {
     var edittext: EditText? = null
     private val REQUEST_CHANGE_WIFI_STATE = 1
-
+    var ssid = "SmartQuilt"
+    var key = "CID3208till"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect_to_quilt)
         var instructText = findViewById<View>(R.id.textView2)
-        var tool_bar = findViewById<View>(R.id.toolbar)
+
         var btnWifiConnect = findViewById<View>(R.id.btn_WifiConnect)
-        var ssid = "SmartQuilt"
-        var key = "CID3208till"
+
         title = "Synchronize Quilt"
 
+        checkWifi()
 
         // calling the action bar
         val actionBar = supportActionBar
@@ -93,24 +96,21 @@ class ConnectToQuilt : AppCompatActivity() {
             instructText.textView2.text = getString(R.string.instructions6)
             
             Handler().postDelayed({
-                Glide.with(this).clear(imageView)
+
                 if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
                     val wifiInfo = wifiManager.connectionInfo
                     if (wifiInfo.networkId == -1) {
                         //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
                         instructText.textView2.text = getString(R.string.instructions3)
+                        Glide.with(this).clear(imageView)
                         // Not connected to an access point
 
                     } else {
-                        tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
                         //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
                         //Add download code.
                         DownloadData()
-                        instructText.textView2.text = getString(R.string.instructions5)
-
                         //Add delay.
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+
                     }
                     // Connected to an access point
 
@@ -126,6 +126,20 @@ class ConnectToQuilt : AppCompatActivity() {
 
         }
 
+    }
+    fun checkWifi(){
+        //Check Which network we're connected to.
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val info = cm.activeNetworkInfo
+        if (info != null && info.isConnected) {
+            val wifiName = info.extraInfo
+
+            if(wifiName=="\""+ssid+"\"") {
+                var tool_bar = findViewById<View>(R.id.toolbar)
+                tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
+            }
+            //Toast.makeText(this, wifiName, Toast.LENGTH_LONG).show();
+        }
     }
 
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
@@ -191,12 +205,23 @@ class ConnectToQuilt : AppCompatActivity() {
     }
 
     private fun onFailure(t: Throwable) {
+        val imageView: ImageView = findViewById(R.id.imageView)
+        var instructText = findViewById<View>(R.id.textView2)
+        instructText.textView2.text = getString(R.string.instructions7)
+        Glide.with(this).clear(imageView)
         Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
         Log.d("ERROR",t.toString())
+
 
     }
 
     private fun onResponse(response: Quilt) {
+        val imageView: ImageView = findViewById(R.id.imageView)
+        var tool_bar = findViewById<View>(R.id.toolbar)
+        var instructText = findViewById<View>(R.id.textView2)
+        Glide.with(this).clear(imageView)
+        tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
+        instructText.textView2.text = getString(R.string.instructions5)
         Log.d("Response",response.toString())
 
         //saving to database
@@ -271,5 +296,8 @@ class ConnectToQuilt : AppCompatActivity() {
         }
         cursor.close()
         Log.e("Database", itemIds.toString())
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }

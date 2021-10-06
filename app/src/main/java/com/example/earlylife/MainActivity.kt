@@ -7,9 +7,11 @@ package com.example.earlylife
 
 import android.app.Activity
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.wifi.SupplicantState
 import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -43,40 +45,27 @@ import io.reactivex.schedulers.Schedulers
 import kotlin.collections.ArrayList
 
 import androidx.appcompat.app.ActionBar;
+import android.net.NetworkInfo
+
+import android.net.ConnectivityManager
+
 
 
 
 class MainActivity : AppCompatActivity() {
-
+    var ssid = "SmartQuilt"
+    var key = "CID3208till"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val dbHelper = FeedReaderContract.FeedReaderDbHelper(this.applicationContext)
-        var tool_bar = findViewById<View>(R.id.toolbar)
 
         // calling the action bar
         val actionBar = supportActionBar
 
         // showing the back button in action bar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
-        val wifiManager = getSystemService(WIFI_SERVICE) as WifiManager
 
-        //Perform a check if Wifi is connected to SmartQuilt
-        Handler().postDelayed({
-            if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
-                val wifiInfo = wifiManager.connectionInfo
-                if (wifiInfo.networkId == -1) {
-                    //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
-                    // Not connected to an access point
-                } else {
-                    tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
-                    //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
-                }
-                // Connected to an access point
-            } else {
-                // Wi-Fi adapter is OFF
-            }
-        }, 4000)
         //instantiating and setting values for the spinner
         val spinner: Spinner = findViewById(R.id.date_range_spinner)
         //var txt_activityID = findViewById<TextView>(R.id.sensor_data)
@@ -142,8 +131,8 @@ class MainActivity : AppCompatActivity() {
             startIndividualActivityReport(getMostCorrect())
         }
 
-
-
+        //Can only fetch data from the connect screen.
+        /*
         /*Using retrofit to get sensor data */
         val compositeDisposable = CompositeDisposable()
         compositeDisposable.add(
@@ -152,6 +141,23 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
 
+         */
+        checkWifi()
+
+    }
+    fun checkWifi(){
+        //Check Which network we're connected to.
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val info = cm.activeNetworkInfo
+        if (info != null && info.isConnected) {
+            val wifiName = info.extraInfo
+
+            if(wifiName=="\""+ssid+"\"") {
+                var tool_bar = findViewById<View>(R.id.toolbar)
+                tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
+            }
+            //Toast.makeText(this, wifiName, Toast.LENGTH_LONG).show();
+        }
     }
 
 
@@ -181,6 +187,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onResponse(response: Quilt) {
+        var tool_bar = findViewById<View>(R.id.toolbar)
+        tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
         Log.d("Response",response.toString())
         //var txt_activityID = findViewById<TextView>(R.id.sensor_data)
         //txt_activityID.text = response.LearnShapes.activityID

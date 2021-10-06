@@ -24,16 +24,16 @@
     </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
-        android:layout_width="297dp"
-        android:layout_height="394dp"
+        android:layout_width="194dp"
+        android:layout_height="176dp"
         android:layout_marginStart="37dp"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.394"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.99"
+        app:layout_constraintVertical_bias="0.721"
         tools:context=".MainActivity">
 
         <ImageView
@@ -81,6 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.0" />
+
     <!--
     <EditText
         android:id="@+id/WifiName"

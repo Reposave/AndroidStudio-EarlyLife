@@ -3,6 +3,8 @@ package com.example.earlylife
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Point
+import android.net.ConnectivityManager
+import android.net.wifi.SupplicantState
 import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.os.Handler
@@ -27,7 +29,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
-
+    var ssid = "SmartQuilt"
+    var key = "CID3208till"
 class ActivityReport : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,24 +55,18 @@ class ActivityReport : AppCompatActivity() {
         correctValue?.setText(activityName?.let { getCorrect(it).toString() })
         hoursValue?.setText(activityName?.let{ getTimeOnTask(it).toString() })
 
-        val wifiManager = getSystemService(WIFI_SERVICE) as WifiManager
+        //Check Which network we're connected to.
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val info = cm.activeNetworkInfo
+        if (info != null && info.isConnected) {
+            val wifiName = info.extraInfo
 
-        //Perform a check if Wifi is connected to SmartQuilt
-        Handler().postDelayed({
-            if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
-                val wifiInfo = wifiManager.connectionInfo
-                if (wifiInfo.networkId == -1) {
-                    //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
-                    // Not connected to an access point
-                } else {
-                    tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
-                    //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
-                }
-                // Connected to an access point
-            } else {
-                // Wi-Fi adapter is OFF
+            if(wifiName=="\""+ssid+"\"") {
+                var tool_bar = findViewById<View>(R.id.toolbar)
+                tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
             }
-        }, 4000)
+            //Toast.makeText(this, wifiName, Toast.LENGTH_LONG).show();
+        }
 
         var anyChartLineView: AnyChartView = findViewById(R.id.any_chart_line_view)
         APIlib.getInstance().setActiveAnyChartView(anyChartLineView)
@@ -89,7 +86,21 @@ class ActivityReport : AppCompatActivity() {
         lineGraph.data(lineData)
         anyChartLineView.setChart(lineGraph)
 
+        checkWifi()
+    }
+    fun checkWifi(){
+        //Check Which network we're connected to.
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val info = cm.activeNetworkInfo
+        if (info != null && info.isConnected) {
+            val wifiName = info.extraInfo
 
+            if(wifiName=="\""+ssid+"\"") {
+                var tool_bar = findViewById<View>(R.id.toolbar)
+                tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
+            }
+            //Toast.makeText(this, wifiName, Toast.LENGTH_LONG).show();
+        }
     }
 
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {

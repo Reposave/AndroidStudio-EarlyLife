@@ -11,29 +11,32 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.pdfview.PDFView
 import android.graphics.Typeface
+import android.net.ConnectivityManager
+import android.net.wifi.SupplicantState
 import android.widget.ImageView
 
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
+import kotlinx.android.synthetic.main.activity_connect_to_quilt.view.*
 
 @Suppress("DEPRECATION")
 
 class EcdResources : AppCompatActivity() {
-
+    var ssid = "SmartQuilt"
+    var key = "CID3208till"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ecd__resources)
 
 
-        //Toolbars may break this screen due to linear Layout, fix after merge.
-        var tool_bar = findViewById<View>(R.id.toolbar)
-
         // calling the action bar
         val actionBar = supportActionBar
 
         // showing the back button in action bar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
+
 
 
         // Fonts
@@ -55,25 +58,21 @@ class EcdResources : AppCompatActivity() {
         val cardView5 = findViewById<CardView>(R.id.ncfCard)
         cardView5.setOnClickListener { NCF() }
 
-        val wifiManager = getSystemService(WIFI_SERVICE) as WifiManager
+        checkWifi()
+    }
+    fun checkWifi(){
+        //Check Which network we're connected to.
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val info = cm.activeNetworkInfo
+        if (info != null && info.isConnected) {
+            val wifiName = info.extraInfo
 
-        //Perform a check if Wifi is connected to SmartQuilt
-        Handler().postDelayed({
-            if (wifiManager.isWifiEnabled) { // Wi-Fi adapter is ON
-                val wifiInfo = wifiManager.connectionInfo
-                if (wifiInfo.networkId == -1) {
-                    //Toast.makeText(this, "SmartQuilt network not found."+count, Toast.LENGTH_LONG).show(); toasts are stacked.
-                    // Not connected to an access point
-                } else {
-                    tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
-                    //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
-                }
-                // Connected to an access point
-            } else {
-                // Wi-Fi adapter is OFF
+            if(wifiName=="\""+ssid+"\"") {
+                var tool_bar = findViewById<View>(R.id.toolbar)
+                tool_bar.setBackgroundColor(Color.parseColor("#18a558"))
             }
-        }, 4000)
-
+            //Toast.makeText(this, wifiName, Toast.LENGTH_LONG).show();
+        }
     }
 
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
