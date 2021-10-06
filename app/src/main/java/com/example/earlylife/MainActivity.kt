@@ -45,10 +45,14 @@ import io.reactivex.schedulers.Schedulers
 import kotlin.collections.ArrayList
 
 import androidx.appcompat.app.ActionBar;
+<<<<<<< HEAD
 import android.net.NetworkInfo
 
 import android.net.ConnectivityManager
 
+=======
+import java.text.SimpleDateFormat
+>>>>>>> filter
 
 
 
@@ -408,6 +412,7 @@ class MainActivity : AppCompatActivity() {
         }
         return currentBest
     }
+
 
     /**
      * Function starts the individual report activity, invoked when button clicked
