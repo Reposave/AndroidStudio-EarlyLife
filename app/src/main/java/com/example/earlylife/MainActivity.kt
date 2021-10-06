@@ -43,7 +43,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlin.collections.ArrayList
 
 import androidx.appcompat.app.ActionBar;
-
+import java.text.SimpleDateFormat
 
 
 class MainActivity : AppCompatActivity() {
@@ -401,7 +401,6 @@ class MainActivity : AppCompatActivity() {
         return currentBest
     }
 
-    fun getF
 
     /**
      * Function starts the individual report activity, invoked when button clicked

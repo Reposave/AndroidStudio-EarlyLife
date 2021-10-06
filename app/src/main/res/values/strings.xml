@@ -38,7 +38,7 @@
 
 
     <string name="open">Open</string>
-
+    <string name="description">This activity involves the child selecting corresponding shapes such as a Circle, Triangle, Square etc. on the SmartQuilt when prompted. </string>
 
 
     <string-array name="date_range_array">
