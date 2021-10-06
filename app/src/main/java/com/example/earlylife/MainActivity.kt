@@ -41,19 +41,11 @@ import com.example.earlylife.SQLite.FeedReaderContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-
 import kotlin.collections.ArrayList
-
 import androidx.appcompat.app.ActionBar;
-<<<<<<< HEAD
 import android.net.NetworkInfo
-
 import android.net.ConnectivityManager
-
-=======
 import java.text.SimpleDateFormat
->>>>>>> filter
-
 
 
 class MainActivity : AppCompatActivity() {
