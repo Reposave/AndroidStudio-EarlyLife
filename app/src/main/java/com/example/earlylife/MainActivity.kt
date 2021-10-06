@@ -200,11 +200,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         val learnNumbersValues = ContentValues().apply {
-            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.LearnShapes.activityID)
-            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.LearnShapes.acticityName)
-            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.LearnShapes.date)
-            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.LearnShapes.timeOnTask)
-            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.LearnShapes.correct)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_ID, response.LearnNumbers.activityID)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_ACTIVITY_NAME, response.LearnNumbers.acticityName)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_DATE, response.LearnNumbers.date)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_TIME_ON_TASK, response.LearnNumbers.timeOnTask)
+            put(FeedReaderContract.FeedEntry.COLUMN_NAME_CORRECT, response.LearnNumbers.correct)
         }
 
         val loveValues = ContentValues().apply {
@@ -392,6 +392,7 @@ class MainActivity : AppCompatActivity() {
                     timeOnTask += a //Integer.getInteger(a)
                 }
             }
+            Log.d("Debug",timeOnTask.toString() + " "+currentBiggest.toString())
             if (timeOnTask > currentBiggest){
                 currentBest = a
                 currentBiggest = timeOnTask
