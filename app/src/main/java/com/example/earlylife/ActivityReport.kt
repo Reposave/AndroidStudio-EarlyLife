@@ -55,7 +55,8 @@ class ActivityReport : AppCompatActivity() {
         var hoursValue = findViewById<TextView>(R.id.hours_spent_value)
         correctValue?.setText(activityName?.let { getCorrect(it).toString() })
         hoursValue?.setText(activityName?.let{ getTimeOnTask(it).toString() })
-
+        val topText = findViewById<TextView>(R.id.top_text_name)
+        topText.setText(activityName)
         //Check Which network we're connected to.
         val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         val info = cm.activeNetworkInfo
