@@ -141,7 +141,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
-                    app:srcCompat="@drawable/cloudicon"></ImageView>
+                    app:srcCompat="@drawable/babyappicon"></ImageView>
 
                 <TextView
                     android:id="@+id/tutorial"

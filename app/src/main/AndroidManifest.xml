@@ -25,7 +25,7 @@
         <activity android:name=".EcdResources" />
         <activity
             android:name=".HomePage"
-            android:label="Home">
+            android:label="EarlyLife">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
