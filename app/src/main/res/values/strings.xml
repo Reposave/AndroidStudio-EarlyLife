@@ -17,11 +17,11 @@
                                     2. A message will pop up on success and \n\n
                                     you will now be connected to the Quilt.</string>
     <string name="instructions2">Steps to connecting to your Quilt.</string>
-    <string name="instructions3">Connection Failed, Please try again or check if the network "SmartQuilt" \n\n
-                                    appears on your list of available wifi connections.</string>
+    <string name="instructions3">Connection Failed, please try again or check if the network "SmartQuilt" appears on your list of available wifi connections.</string>
     <string name="instructions4">Wifi is off, please turn your wifi on then try again.</string>
-    <string name="instructions5">Data has been retrieved from the SmartQuilt.</string>
+    <string name="instructions5">Retrieving data from the SmartQuilt.</string>
     <string name="instructions6">Searching...</string>
+    <string name="instructions7">Connected to SmartQuilt but failed to retrieve data...</string>
 
     <string name="r1">Learn through Play</string>
     <string name="r2">UNICEF Education Kit Handbook</string>
