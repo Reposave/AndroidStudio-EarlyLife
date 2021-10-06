@@ -16,16 +16,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.971">
+        app:layout_constraintVertical_bias="0.971"
+        android:gravity="center_horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/view_report_card"
-            android:layout_width="150dp"
-            android:layout_height="170dp"
+            android:layout_width="130dp"
+            android:layout_height="150dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="41dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="23dp"
             app:cardCornerRadius="4dp">
 
             <RelativeLayout
@@ -46,7 +47,7 @@
                     android:gravity="center_horizontal"
                     android:text="Report"
                     android:textColor="#000000"
-                    android:textSize="25dp"></TextView>
+                    android:textSize="20dp"></TextView>
 
             </RelativeLayout>
 
@@ -54,14 +55,13 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/connect_to_quilt_card"
-            android:layout_width="150dp"
-            android:layout_height="170dp"
+            android:layout_width="130dp"
+            android:layout_height="150dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="41dp"
-            android:layout_toEndOf="@+id/view_report_card"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="23dp"
             app:cardCornerRadius="4dp">
 
             <RelativeLayout
@@ -82,7 +82,7 @@
                     android:gravity="center_horizontal"
                     android:text="Connect"
                     android:textColor="#000000"
-                    android:textSize="25dp"></TextView>
+                    android:textSize="20dp"></TextView>
 
             </RelativeLayout>
 
@@ -90,15 +90,13 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/view_ecd_resources_btn"
-            android:layout_width="150dp"
-            android:layout_height="170dp"
+            android:layout_width="130dp"
+            android:layout_height="150dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="23dp"
             android:layout_marginTop="11dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginBottom="52dp"
-            android:layout_toEndOf="@+id/upload_data_card"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="75dp"
             app:cardCornerRadius="4dp">
 
             <RelativeLayout
@@ -119,7 +117,7 @@
                     android:gravity="center_horizontal"
                     android:text="Resources"
                     android:textColor="#000000"
-                    android:textSize="25dp"></TextView>
+                    android:textSize="20dp"></TextView>
 
             </RelativeLayout>
 
@@ -127,13 +125,13 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/upload_data_card"
-            android:layout_width="150dp"
-            android:layout_height="170dp"
+            android:layout_width="130dp"
+            android:layout_height="150dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="41dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="11dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginBottom="75dp"
             app:cardCornerRadius="4dp">
 
             <RelativeLayout
@@ -153,7 +151,7 @@
                     android:gravity="center_horizontal"
                     android:text="Upload"
                     android:textColor="#000000"
-                    android:textSize="25dp"></TextView>
+                    android:textSize="20dp"></TextView>
 
             </RelativeLayout>
 
@@ -177,12 +175,12 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_horizontal"
-        android:text="Welcome to EarlyLife"
+        android:text="EarlyLife"
         android:textColor="#FFFFFF"
-        android:textSize="25dp"
+        android:textSize="38dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
