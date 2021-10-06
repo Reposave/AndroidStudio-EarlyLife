@@ -108,13 +108,8 @@ class ConnectToQuilt : AppCompatActivity() {
                     } else {
                         //Toast.makeText(this, "Connected to a network.", Toast.LENGTH_LONG).show();
                         //Add download code.
-<<<<<<< HEAD
                         DownloadData()
-=======
-                        var d = DownloadData()
                         instructText.textView2.text = getString(R.string.instructions5)
-
->>>>>>> filter
                         //Add delay.
 
                     }
@@ -201,14 +196,13 @@ class ConnectToQuilt : AppCompatActivity() {
             }
         }
     }
-    private fun DownloadData(): Boolean{
+    private fun DownloadData(){
         val compositeDisposable = CompositeDisposable()
         compositeDisposable.add(
             RetrofitService.ServiceBuilder.buildService().getShapes()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
-        return true
     }
 
     private fun onFailure(t: Throwable) {
