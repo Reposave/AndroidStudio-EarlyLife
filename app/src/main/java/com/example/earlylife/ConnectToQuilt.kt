@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Typeface
 import android.net.ConnectivityManager
 import android.net.wifi.SupplicantState
 
@@ -53,6 +54,8 @@ class ConnectToQuilt : AppCompatActivity() {
         title = "Synchronize Quilt"
 
         checkWifi()
+        // Fonts
+        setFonts()
 
         // calling the action bar
         val actionBar = supportActionBar
@@ -299,5 +302,23 @@ class ConnectToQuilt : AppCompatActivity() {
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+    }
+    private fun setFonts(){
+        /** This function sets all the fonts for the ECDResources page */
+        val fontBold: Typeface = Typeface.createFromAsset(assets, "Nexa Bold.otf")
+        val fontLight: Typeface = Typeface.createFromAsset(assets, "Nexa Light.otf")
+
+        val heading1 = findViewById<TextView>(R.id.textView3)
+
+        val sec1 = findViewById<TextView>(R.id.textView2)
+        val sec2 = findViewById<TextView>(R.id.btn_WifiConnect)
+
+
+        // apply font
+        heading1.typeface = fontBold
+
+        sec1.typeface = fontLight
+        sec2.typeface = fontLight
+
     }
 }
