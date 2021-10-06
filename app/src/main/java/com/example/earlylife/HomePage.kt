@@ -20,6 +20,7 @@ class HomePage : AppCompatActivity() {
         var btnViewReport = findViewById<View>(R.id.view_report_card)
         var btnEcdResources = findViewById<View>(R.id.view_ecd_resources_btn)
         var btnConnectToQuilt = findViewById<View>(R.id.connect_to_quilt_card)
+        var btnTutorial = findViewById<View>(R.id.tutorial_data_card)
 
         //title = ""
 
@@ -39,6 +40,11 @@ class HomePage : AppCompatActivity() {
             val intent = Intent(this,ConnectToQuilt::class.java)
             startActivity(intent)
         }
+
+        btnTutorial.setOnClickListener {
+            val intent = Intent(this, Tutorial::class.java)
+            startActivity(intent)
+        }
     }
     private fun setFonts(){
         /** This function sets all the fonts for the ECDResources page */
@@ -49,7 +55,7 @@ class HomePage : AppCompatActivity() {
         val heading2 = findViewById<TextView>(R.id.report)
         val heading3 = findViewById<TextView>(R.id.resources)
         val heading4 = findViewById<TextView>(R.id.connect)
-        val heading5 = findViewById<TextView>(R.id.upload)
+        val heading5 = findViewById<TextView>(R.id.tutorial)
 
         // apply font
         heading1.typeface = fontBold
