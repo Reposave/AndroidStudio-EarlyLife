@@ -29,9 +29,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
+
+class ActivityReport : AppCompatActivity() {
     var ssid = "SmartQuilt"
     var key = "CID3208till"
-class ActivityReport : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
