@@ -23,17 +23,15 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="#FFFFFF"
+        tools:context=".EcdResources"
         tools:ignore="MissingConstraints">
 
-<<<<<<< HEAD
-    tools:context=".EcdResources">
-=======
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="28dp">
->>>>>>> ConnectQuiltUI
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>

@@ -47,12 +47,11 @@ class ActivityReport : AppCompatActivity() {
         // showing the back button in action bar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
 
-<<<<<<< HEAD
         var correctValue = findViewById<TextView>(R.id.correct_value)
         var hoursValue = findViewById<TextView>(R.id.hours_spent_value)
         correctValue?.setText(activityName?.let { getCorrect(it).toString() })
         hoursValue?.setText(activityName?.let{ getTimeOnTask(it).toString() })
-=======
+
         val wifiManager = getSystemService(WIFI_SERVICE) as WifiManager
 
         //Perform a check if Wifi is connected to SmartQuilt
@@ -72,28 +71,6 @@ class ActivityReport : AppCompatActivity() {
             }
         }, 4000)
 
-        var anyChartView: AnyChartView = findViewById(R.id.any_chart_view)
-        APIlib.getInstance().setActiveAnyChartView(anyChartView)
-
-        //Adding a progress meter
-        val successMeter = AnyChart.pie()
-        successMeter.innerRadius("80%")
-
-        var data = ArrayList<DataEntry>()
-        data.add(ValueDataEntry("Correct", 80))
-        data.add(ValueDataEntry("Incorrect", 20))
-        successMeter.data(data)
-
-
-        //Adding the chart to the UI
-        anyChartView.setChart(successMeter)
-
-
-        //adding the report details width to the UI
-        var activityDetails = findViewById<View>(R.id.activity_details)
-        //activityDetails.layoutParams.width = s_width/2
-
->>>>>>> 840dc2b55449c63ffde590f16e724fb08396bc89
         var anyChartLineView: AnyChartView = findViewById(R.id.any_chart_line_view)
         APIlib.getInstance().setActiveAnyChartView(anyChartLineView)
         //adding the line graph
